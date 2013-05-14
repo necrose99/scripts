@@ -1,0 +1,1202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script type="text/javascript">var NREUMQ=NREUMQ||[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script>
+<title>Creating Slide Show Backgrounds in XFCE | Linux Journal</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="canonical" href="http://www.linuxjournal.com/content/creating-slide-show-backgrounds-xfce" />
+<meta name="keywords" content="HOW-TOs" />
+<meta name="description" content="Continuing in this series of slide show backgrounds, in this article I will explain the process of creating a set of desktop backgrounds that will transition like a slide-show in XFCE. Note that I am using XFCE version 4.6.0 in this tutorial. Other versions may be able to use this tip, but the screen shots may look different." />
+<link rel="shortcut icon" href="/files/linuxjournal.com/ufiles/linuxjournal_favicon.png" type="image/x-icon" />
+  <link type="text/css" rel="stylesheet" media="all" href="/modules/book/book.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/modules/node/node.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/modules/poll/poll.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/modules/system/defaults.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/modules/system/system.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/modules/system/system-menus.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/modules/user/user.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/modules/cck/theme/content-module.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/modules/date/date.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/modules/date/date_popup/themes/datepicker.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/modules/date/date_popup/themes/timeentry.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/modules/filefield/filefield.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/modules/logintoboggan/logintoboggan.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/modules/mollom/mollom.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/modules/user_relationships/user_relationships_ui/user_relationships_ui.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/modules/views_slideshow/contrib/views_slideshow_singleframe/views_slideshow.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/modules/calendar/calendar.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/misc/farbtastic/farbtastic.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/modules/cck/modules/fieldgroup/fieldgroup.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/modules/views/css/views.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/modules/comment/comment.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/modules/quicktabs/css/quicktabs.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/modules/webform/css/webform.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/themes/zen/zen/tabs.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/themes/zen/zen/messages.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/themes/zen/zen/block-editing.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/themes/zen/zen/wireframes.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/themes/linuxjournal/layout.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/themes/linuxjournal/linuxjournal.css?C" />
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/themes/linuxjournal/pygments.css?C" />
+<link type="text/css" rel="stylesheet" media="print" href="/sites/linuxjournal.com/themes/linuxjournal/print.css?C" />
+<!--[if IE]>
+<link type="text/css" rel="stylesheet" media="all" href="/sites/linuxjournal.com/themes/zen/zen/ie.css?C" />
+<![endif]-->
+  <script type="text/javascript" src="/files/linuxjournal.com/ufiles/js/js_7bf3b8ad8ad0c7d58d2d4f48a56090cb.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, { "basePath": "/", "user_relationships_ui": { "loadingimage": "/sites/linuxjournal.com/modules/user_relationships/user_relationships_ui/images/loadingAnimation.gif", "savingimage": "/sites/linuxjournal.com/modules/user_relationships/user_relationships_ui/images/savingimage.gif", "position": { "position": "absolute", "left": "0", "top": "0" } }, "quicktabs": { "qt_1": { "tabs": [ 0, 0, 0 ] } } });
+//--><!]]>
+</script>
+<!-- PUT THIS TAG IN THE head SECTION -->
+<script type="text/javascript" src="http://partner.googleadservices.com/gampad/google_service.js">
+</script>
+<script type="text/javascript">
+  GS_googleAddAdSenseService("ca-pub-3600556074671070");
+  GS_googleEnableAllServices();
+</script>
+<script type="text/javascript">
+  GA_googleAddSlot("ca-pub-3600556074671070", "Half_Banner336x90");
+  GA_googleAddSlot("ca-pub-3600556074671070", "Large_Rectangle336x280");
+  GA_googleAddSlot("ca-pub-3600556074671070", "Leaderboard728x90");
+GA_googleAddSlot("ca-pub-3600556074671070", "Desktop_LargeRectangle");
+GA_googleAddSlot("ca-pub-3600556074671070", "Desktop_Leaderboard");
+GA_googleAddSlot("ca-pub-3600556074671070", "Embedded_LargeRectangle");
+GA_googleAddSlot("ca-pub-3600556074671070", "Embedded_Leaderboard");
+GA_googleAddSlot("ca-pub-3600556074671070", "Mobile_LargeRectangle");
+GA_googleAddSlot("ca-pub-3600556074671070", "Mobile_Leaderboard");
+GA_googleAddSlot("ca-pub-3600556074671070", "Security_LargeRectangle");
+GA_googleAddSlot("ca-pub-3600556074671070", "Security_Leaderboard");
+GA_googleAddSlot("ca-pub-3600556074671070", "SysAdmin_LargeRectangle");
+GA_googleAddSlot("ca-pub-3600556074671070", "SysAdmin_Leaderboard");
+GA_googleAddSlot("ca-pub-3600556074671070", "Virtualization_LargeRectangle");
+GA_googleAddSlot("ca-pub-3600556074671070", "Virtualization_Leaderboard");
+GA_googleAddSlot("ca-pub-3600556074671070", "HPC_LargeRectangle");
+GA_googleAddSlot("ca-pub-3600556074671070", "HPC_Leaderboard");
+GA_googleAddSlot("ca-pub-3600556074671070", "WebDevelopment_LargeRectangle");
+GA_googleAddSlot("ca-pub-3600556074671070", "WebDevelopment_Leaderboard");
+GA_googleAddSlot("ca-pub-3600556074671070", "large_rectangle_test");
+GA_googleAddSlot("ca-pub-3600556074671070", "article_footer");
+GA_googleAddSlot("ca-pub-3600556074671070", "sidebar_bottom_lr");
+GA_googleAddSlot("ca-pub-3600556074671070", "small_footer_square");
+GA_googleAddSlot("ca-pub-3600556074671070", "small_footer_square_middle");
+GA_googleAddSlot("ca-pub-3600556074671070", "small_footer_square_right");
+GA_googleAddSlot("ca-pub-3600556074671070", "subscriptions");
+GA_googleAddSlot("ca-pub-3600556074671070", "MediumRectangle300x250");
+
+</script>
+<script type="text/javascript">
+  GA_googleFetchAds();
+</script>
+<!-- END OF TAG FOR head SECTION -->
+
+ <!-- <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script> -->
+ <!--<script type="text/javascript">_uacct = "UA-1117794-1"; urchinTracker();</script> -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1117794-1");
+pageTracker._setDomainName(".linuxjournal.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+<!-- Start Quantcast tag -->
+<script type="text/javascript"
+src="http://edge.quantserve.com/quant.js"></script>
+<script
+type="text/javascript">_qacct="p-a3K3N6enFe9wA";quantserve();</script>
+<object>
+<noscript>
+<a href="http://www.quantcast.com/p-a3K3N6enFe9wA"
+target="_blank"><img
+src="http://pixel.quantserve.com/pixel/p-a3K3N6enFe9wA.gif"
+style="display: none;" border="0" height="1" width="1"
+alt="Quantcast"/></a>
+</noscript>
+</object>
+<!-- End Quantcast tag -->
+
+</head>
+<body class="not-front not-logged-in node-type-story one-sidebar sidebar-right page-content-creating-slide-show-backgrounds-xfce section-content">
+
+
+  <div id="page"><div id="page-inner">
+<div id="header-top">
+<!--<div id="login">
+<form action="/?q=user&amp;destination=node%2F1009082"  method="post" id="user-login">
+Username/Email:&nbsp;<input type="text" maxlength="60" name="name" id="edit-name" size="15" value="" class="form-text required" />
+Password:&nbsp;<input type="password" maxlength="" name="pass" id="edit-pass" size="15" class="form-text required" />
+<input type="submit" name="op" value="Login" class="form-submit" />
+
+
+<input type="hidden" name="form_id" id="edit-user-login" value="user_login" />
+
+</form>
+</div>
+<div id="login-links">
+<a href="/user/register">Register</a> | <a href="/user/password">Forgot your password?</a>
+
+
+
+</div>
+<div id="connect">
+<a href="http://www.twitter.com/linuxjournal" title="Follow us on Twitter"><img alt="Twitter" src="/files/linuxjournal.com/images/twittericon.jpg" /></a><a href="http://www.facebook.com/linuxjournal" title="Become a Fan on Facebook"><img alt="Facebook" src="/files/linuxjournal.com/images/fbicon.jpg" /></a><a href="http://www.flickr.com/groups/linuxjournal/pool/" title="Contribute to Our Flickr Pool"><img alt="Flickr" src="/files/linuxjournal.com/images/flickricon.jpg" /></a><a href="/rss_feeds" title="Subscribe to Our Feeds"><img alt="RSS" src="/files/linuxjournal.com/images/rssicon.jpg" /></a>
+</div>-->
+       <div id="skip-to-nav"><a href="#navigation">Skip to Navigation</a></div>
+    <div id="subscribe-button"><a href="http://www.linuxjournal.com/subscribe">Click to subscribe</a></div>
+<div id="login-button"><a href="/user">Login</a></div>
+
+</div> <!-- /#header-top -->
+
+
+
+
+
+
+    <a name="top" id="navigation-top"></a>
+
+
+    <div id="header"><div id="header-inner" class="clear-block">
+
+              <div id="logo-title">
+
+                      <div id="logo"><a href="/" title="Home" rel="home"><img src="/files/linuxjournal.com/ufiles/logo-lj.jpg" alt="Linux Journal" id="logo-image" /></a></div>
+          
+          
+          
+  <div id="leaderboard-adblock" class="adblock leaderboard-adblock">
+       <div id="block-block-90" class="block block-block region-odd even region-count-1 count-14"><div class="block-inner">
+
+  
+  <div class="content">
+    <!--paging_filter--><!-- PUT THIS TAG IN DESIRED LOCATION OF SLOT Leaderboard728x90
+     -->
+<script type="text/javascript">
+  GA_googleFillSlot("Leaderboard728x90");
+</script>
+<!-- END OF TAG FOR SLOT Leaderboard728x90
+     -->
+  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+	</div>
+
+        </div> <!-- /#logo-title -->
+      
+
+
+      
+    </div></div> <!-- /#header-inner, /#header -->
+
+    <div id="main"><div id="main-inner" class="clear-block with-navbar">
+
+      <div id="content"><div id="content-inner">
+
+        
+        
+                  <div id="content-header">
+            <div class="breadcrumb"><a href="/">Home</a> › </div>                          <h1 class="title">Creating Slide Show Backgrounds in XFCE</h1>
+                                                          </div> <!-- /#content-header -->
+        
+        <div id="content-area">
+          <div id="node-1009082" class="node node-type-story"><div class="node-inner">
+
+
+
+  
+
+  
+  
+  
+
+
+  
+  
+<div id="facebook-like">
+<iframe src="http://www.facebook.com/plugins/like.php?href=www.linuxjournal.com/content/creating-slide-show-backgrounds-xfce&amp;layout=standard&amp;show_faces=false&amp;width=250&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=55" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:250px; height:55px;" allowTransparency="true"></iframe>
+</div>
+    
+  
+      <div class="meta">
+              <div class="submitted">
+		Dec 17, 2009		&nbsp;By&nbsp;<a href="/users/ross-larson" title="View user profile.">Ross Larson</a>	</div>
+      
+              <div class="terms terms-inline">&nbsp;in<ul class="links inline"><li class="taxonomy_term_19 first last"><a href="/tag/how-tos" rel="tag" title="">HOW-TOs</a></li>
+</ul></div>
+      
+  	 </div>
+    <!-- how'd this get in here?</div> -->
+  
+  
+    
+
+
+  <div class="content">
+
+    <div class="g-plusone-wrapper" style="margin: 0 1em .5em 350px" ><g:plusone href="http://www.linuxjournal.com/content/creating-slide-show-backgrounds-xfce" ></g:plusone></div><p>Continuing in this series of slide show backgrounds, in this article
+I will explain the process of creating a set of desktop backgrounds that
+will transition like a slide-show in XFCE. Note that I am using XFCE version
+4.6.0 in this tutorial. Other versions may be able to use this tip, but the
+screen shots may look different.
+See corresponding howtos for <a class="reference" href="/content/create-custom-transitioning-background-your-gnome-228-desktop">GNOME</a>, and <a class="reference" href="/content/custom-transitioning-backgrounds-kde3">KDE3</a> also.</p>
+
+
+
+<p>Start by right clicking on the desktop and choosing &quot;Desktop
+Settings&quot;.</p>
+<img alt="xfce-lj1.jpg" src="/ufiles/xfce-lj1.jpg" />
+<p>Under the &quot;Background&quot; tab, choose &quot;Image List&quot;. Click on the green plus
+sign near the left side of the center of the window to add backgrounds to
+this list.</p>
+<img alt="xfce-lj2.jpg" src="/ufiles/xfce-lj2.jpg" style="width: 640px;" />
+<p>Hold down the shift key when clicking to select long lists of images, or
+hold the control key to select individual image files from the list. Click
+&quot;Add&quot; in the lower right hand corner to finish selecting the images.</p>
+<img alt="xfce-lj4.jpg" src="/ufiles/xfce-lj4.jpg" style="width: 640px;" />
+<p>Select how you would like the background images displayed (Auto, Centered, Tiled,
+Stretched, Scaled, Zoomed) and then close the window.</p>
+<img alt="xfce-lj5.jpg" src="/ufiles/xfce-lj5.jpg" style="width: 640px;" />
+<p>Now, at this point, you've created a list of images that XFCE will pick from
+at random each time you log into XFCE. The only time these images will
+change is upon login. If you're OK with that, you're done. If you would like
+the ability to switch these backgrounds either on demand or at a fixed
+interval, read on.
+Warning: From this point on, we are in &quot;hack&quot; territory, so things may not
+always run smoothly.</p>
+<div class="section">
+<h3><a id="creating-a-change-background-desktop-panel-icon" name="creating-a-change-background-desktop-panel-icon">Creating a &quot;Change Background&quot; desktop/panel icon</a></h3>
+<p>Theoretically, the <tt class="docutils literal"><span class="pre">xfdesktop</span> <span class="pre">--reload</span></tt> command should update the
+background, but that didn't work at all for me.   However, we can trick the
+XFCE desktop into thinking that it has been restarted by restarting the
+program that handles the desktop. XFCE calls this program <tt class="docutils literal"><span class="pre">xfdesktop</span></tt>.  From
+the command line, you can type <tt class="docutils literal"><span class="pre">killall</span> <span class="pre">-HUP</span> <span class="pre">xfdesktop</span></tt> to kill the
+xfdesktop process and restart it, which refreshes the icons and chooses a
+new desktop image at random from your list. You can easily create an icon to
+run this command for you, either on your desktop or in the XFCE panel.</p>
+<p>Creating a desktop icon:
+To create a desktop icon, right click on the desktop and choose &quot;Create
+Launcher&quot;</p>
+<img alt="xfce-lj6.jpg" src="/ufiles/xfce-lj6.jpg" />
+<p>in the necessary information in the window, choose an icon, and click
+&quot;Create&quot; to make the icon. Double clicking this icon will restart xfdesktop
+and switch the background for you.</p>
+<img alt="xfce-lj7.jpg" src="/ufiles/xfce-lj7.jpg" />
+</div>
+<div class="section">
+<h3><a id="creating-an-xfce-panel-icon" name="creating-an-xfce-panel-icon">Creating an XFCE panel icon</a></h3>
+<p>Right click the XFCE panel, and select &quot;Add New Items&quot;.</p>
+<img alt="xfce-lj8.jpg" src="/ufiles/xfce-lj8.jpg" />
+<p>From the &quot;Add New Items&quot; window, click &quot;Add&quot;.</p>
+<img alt="xfce-lj9.jpg" src="/ufiles/xfce-lj9.jpg" />
+<p>Fill in the appropriate fields in the launcher window, entering the command
+<tt class="docutils literal"><span class="pre">killall</span> <span class="pre">-HUP</span> <span class="pre">xfdesktop</span></tt>, and choosing an icon that you will recognize.
+Select &quot;OK&quot;.</p>
+<img alt="xfce-lj10.jpg" src="/ufiles/xfce-lj10.jpg" style="width: 640px;" />
+<p>Admire your icon. Clicking it will restart your desktop and refresh the background.</p>
+<img alt="xfce-lj11.jpg" src="/ufiles/xfce-lj11.jpg" />
+</div>
+<div class="section">
+<h3><a id="creating-a-crontab-to-transition-the-backgrounds-at-a-fixed-interval" name="creating-a-crontab-to-transition-the-backgrounds-at-a-fixed-interval">Creating a crontab to transition the backgrounds at a fixed interval</a></h3>
+<p>You can now change backgrounds on demand, but they do not change for you
+unless you log in and out. We will use crontab to help us in this effort.</p>
+<p>At the command line, type <tt class="docutils literal"><span class="pre">crontab</span> <span class="pre">-e</span></tt> to open and begin editing your
+crontab. If you have never edited your crontab before, it will prompt you to
+choose an editor for this task. I chose vim, because that's how I roll. Use
+whatever editor your like the most.</p>
+<img alt="xfce-lj12.jpg" src="/ufiles/xfce-lj12.jpg" style="width: 640px;" />
+<p>Once your crontab is open, you should see a text file that says
+<tt class="docutils literal"><span class="pre">#</span> <span class="pre">m</span> <span class="pre">h</span> <span class="pre">dom</span> <span class="pre">mon</span> <span class="pre">dow</span>&nbsp;&nbsp; <span class="pre">command</span></tt>
+on the first line.  For those of you who are not familiar
+with crontab, please watch the excellent
+<a class="reference" href="/video/scheduling-commands-crontab">Crontab Tech Tip Video</a> that
+Shawn Powers created about how to interact with crontab and the
+meanings of the crontab fields. Add to the next line this text:</p>
+<!-- sourcecode:
+
+*/15 * * * *   killall -HUP xfdesktop -->
+<p>At the beginning of this line, '*/15&quot;  means &quot;every 15 minutes&quot;.  You can
+easily change the numbers in your crontab to any interval that you desire.
+For example, &quot;*/5&quot; would be every five minutes, and &quot;*/2&quot; woulld be every
+other minute.</p>
+<p>Save and close your editor, and crontab will automatically perform your
+commands.</p>
+<img alt="xfce-lj13.jpg" src="/ufiles/xfce-lj13.jpg" style="width: 640px;" />
+</div>
+<div class="section">
+<h3><a id="issues-with-the-xfce-hack" name="issues-with-the-xfce-hack">Issues with the XFCE hack</a></h3>
+<p>Now, I've been having some intermittent issues with this hack.  Sometimes,
+it appears that <tt class="docutils literal"><span class="pre">killall</span> <span class="pre">-HUP</span> <span class="pre">xfdesktop</span></tt> completely kills xfdesktop instead
+of just restarting it.  If your icons have disappeared, and the desktop
+background no longer changes, then xfdesktop has been killed.
+You can verify its death by either looking for xfdesktop in the process list
+by typing <tt class="docutils literal"><span class="pre">ps</span> <span class="pre">aux</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">xfd[e]sktop</span></tt>, or you can simply type
+<tt class="docutils literal"><span class="pre">killall</span> <span class="pre">-HUP</span> <span class="pre">xfdesktop</span></tt>,
+and if you get &quot;xfdesktop: no process killed&quot;, then xfdesktop
+wasn't running at the time you typed the program.</p>
+<p>To revive xfdesktop, simply type <tt class="docutils literal"><span class="pre">xfdesktop</span></tt> at the command line, or create
+another icon/shortcut to this command to revive xfdesktop if it dies.</p>
+</div>
+<div class="section">
+<h3><a id="other-info" name="other-info">Other info</a></h3>
+<p>The list of wallpapers that XFCE uses to change the backgrounds is typically
+located at <tt class="docutils literal"><span class="pre">~/.config/xfce4/desktop/backdrop.list</span></tt>.  The file is simple a text
+file that contains the absolute path of each image, one file per line.
+Creating scripts or programs that monitor or add to this list would be
+rather straightforward, since you could append additional absolute paths via
+scripts or the command line.</p>
+<p>Theoretically, desktop backgrounds can also be modified at the command line
+using the <tt class="docutils literal"><span class="pre">xfconf</span></tt> and the <tt class="docutils literal"><span class="pre">xfconf-query</span></tt> command.
+Documentation for <a class="reference" href="http://www.xfce.org/documentation/4.6/api/xfconf/">xfconf is here</a>.</p>
+<p>Happy hacking, people!</p>
+</div>
+<table id="attachments" class="sticky-enabled">
+ <thead><tr><th>Attachment</th><th>Size</th> </tr></thead>
+<tbody>
+ <tr class="odd"><td><a href="http://www.linuxjournal.com/files/linuxjournal.com/ufiles/xfce-lj1.jpg">xfce-lj1.jpg</a></td><td>19.79 KB</td> </tr>
+ <tr class="even"><td><a href="http://www.linuxjournal.com/files/linuxjournal.com/ufiles/xfce-lj2.jpg">xfce-lj2.jpg</a></td><td>43.31 KB</td> </tr>
+ <tr class="odd"><td><a href="http://www.linuxjournal.com/files/linuxjournal.com/ufiles/xfce-lj4.jpg">xfce-lj4.jpg</a></td><td>85.17 KB</td> </tr>
+ <tr class="even"><td><a href="http://www.linuxjournal.com/files/linuxjournal.com/ufiles/xfce-lj5.jpg">xfce-lj5.jpg</a></td><td>70.8 KB</td> </tr>
+ <tr class="odd"><td><a href="http://www.linuxjournal.com/files/linuxjournal.com/ufiles/xfce-lj6.jpg">xfce-lj6.jpg</a></td><td>21.11 KB</td> </tr>
+ <tr class="even"><td><a href="http://www.linuxjournal.com/files/linuxjournal.com/ufiles/xfce-lj7.jpg">xfce-lj7.jpg</a></td><td>31.21 KB</td> </tr>
+ <tr class="odd"><td><a href="http://www.linuxjournal.com/files/linuxjournal.com/ufiles/xfce-lj8.jpg">xfce-lj8.jpg</a></td><td>20.64 KB</td> </tr>
+ <tr class="even"><td><a href="http://www.linuxjournal.com/files/linuxjournal.com/ufiles/xfce-lj9.jpg">xfce-lj9.jpg</a></td><td>48.41 KB</td> </tr>
+ <tr class="odd"><td><a href="http://www.linuxjournal.com/files/linuxjournal.com/ufiles/xfce-lj10.jpg">xfce-lj10.jpg</a></td><td>44.86 KB</td> </tr>
+ <tr class="even"><td><a href="http://www.linuxjournal.com/files/linuxjournal.com/ufiles/xfce-lj11.jpg">xfce-lj11.jpg</a></td><td>19.92 KB</td> </tr>
+ <tr class="odd"><td><a href="http://www.linuxjournal.com/files/linuxjournal.com/ufiles/xfce-lj12.jpg">xfce-lj12.jpg</a></td><td>23.61 KB</td> </tr>
+ <tr class="even"><td><a href="http://www.linuxjournal.com/files/linuxjournal.com/ufiles/xfce-lj13.jpg">xfce-lj13.jpg</a></td><td>27.94 KB</td> </tr>
+</tbody>
+</table>
+
+  </div>
+      <div class="user-signature clear-block">
+______________________
+	<p>
+        <!--paging_filter-->Linux rocks!
+Personal blog: zootlinux.blogspot.com	</p>
+      </div>
+   
+
+
+  <ul class="links inline"><li class="flag-anon first"><a href="/u?destination=node%2F1009082">Login to save this as favorite</a></li>
+<li class="service-links-delicious"><a href="http://del.icio.us/post?url=http%3A%2F%2Fwww.linuxjournal.com%2Fcontent%2Fcreating-slide-show-backgrounds-xfce&amp;title=Creating+Slide+Show+Backgrounds+in+XFCE" title="Bookmark this post on del.icio.us." id="service-links-delicious-1" class="service-links-delicious" rel="nofollow"><img src="/sites/linuxjournal.com/modules/service_links/images/delicious.png" alt="del.icio.us" title="" width="16" height="16" /></a></li>
+<li class="service-links-digg"><a href="http://digg.com/submit?phase=2&amp;url=http%3A%2F%2Fwww.linuxjournal.com%2Fcontent%2Fcreating-slide-show-backgrounds-xfce&amp;title=Creating+Slide+Show+Backgrounds+in+XFCE" title="Digg this post on digg.com" id="service-links-digg-1" class="service-links-digg" rel="nofollow"><img src="/sites/linuxjournal.com/modules/service_links/images/digg.png" alt="Digg" title="" width="16" height="16" /></a></li>
+<li class="service-links-facebook"><a href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwww.linuxjournal.com%2Fcontent%2Fcreating-slide-show-backgrounds-xfce&amp;t=Creating+Slide+Show+Backgrounds+in+XFCE" title="Share on Facebook." id="service-links-facebook-1" class="service-links-facebook" rel="nofollow"><img src="/sites/linuxjournal.com/modules/service_links/images/facebook.png" alt="Facebook" title="" width="16" height="16" /></a></li>
+<li class="service-links-reddit"><a href="http://reddit.com/submit?url=http%3A%2F%2Fwww.linuxjournal.com%2Fcontent%2Fcreating-slide-show-backgrounds-xfce&amp;title=Creating+Slide+Show+Backgrounds+in+XFCE" title="Submit this post on reddit.com." id="service-links-reddit-1" class="service-links-reddit" rel="nofollow"><img src="/sites/linuxjournal.com/modules/service_links/images/reddit.png" alt="Reddit" title="" width="16" height="16" /></a></li>
+<li class="service-links-slashdot"><a href="http://slashdot.org/bookmark.pl?url=http%3A%2F%2Fwww.linuxjournal.com%2Fcontent%2Fcreating-slide-show-backgrounds-xfce&amp;title=Creating+Slide+Show+Backgrounds+in+XFCE" title="Bookmark this post on SlashDot" id="service-links-slashdot-1" class="service-links-slashdot" rel="nofollow"><img src="/sites/linuxjournal.com/modules/service_links/images/slashdot.png" alt="SlashDot" title="" width="16" height="16" /></a></li>
+<li class="service-links-stumbleupon"><a href="http://www.stumbleupon.com/submit?url=http%3A%2F%2Fwww.linuxjournal.com%2Fcontent%2Fcreating-slide-show-backgrounds-xfce&amp;title=Creating+Slide+Show+Backgrounds+in+XFCE" title="Thumb this up at StumbleUpon" id="service-links-stumbleupon-1" class="service-links-stumbleupon" rel="nofollow"><img src="/sites/linuxjournal.com/modules/service_links/images/stumbleit.png" alt="StumbleUpon" title="" width="16" height="16" /></a></li>
+<li class="tweet_Twitter last"><a href="http://twitter.com/home?status=+Creating+Slide+Show+Backgrounds+in+XFCE%3A+http%3A/%2Fwww.linuxjournal.com/content/creating-slide-show-backgrounds-xfce" class="tweet" rel="nofollow" target="_blank"><img src="/sites/linuxjournal.com/modules/tweet/twitter.png" alt="Post to Twitter" title="Post to Twitter" width="16" height="16" /></a></li>
+</ul>
+ <!-- <div class="contentad">
+
+  </div>
+  -->
+
+<div id="article_footer"><!-- article_footer -->
+<!--<script type='text/javascript'>
+GA_googleFillSlot("article_footer");
+</script> -->
+<!-- MediumRectangle300x250 -->
+<center><script type='text/javascript'>
+GA_googleFillSlot("MediumRectangle300x250");
+</script></center>
+</div> <!-- /#article_footer -->
+
+
+
+
+</div></div> <!-- /node-inner, /node -->
+
+
+  <div id="comments">
+          <h2 id="comments-title">Comments</h2>
+        <form action="/content/creating-slide-show-backgrounds-xfce"  accept-charset="UTF-8" method="post" id="comment-controls">
+<div><div class="box"><div class="box-inner">
+
+      <h2 class="title">Comment viewing options</h2>
+  
+  <div class="content">
+    <div class="container-inline"><input type="hidden" name="form_build_id" id="form-9e3dbe7dd26734eebdd122cfd90298b1" value="form-9e3dbe7dd26734eebdd122cfd90298b1"  />
+<input type="hidden" name="form_id" id="edit-comment-controls" value="comment_controls"  />
+<div class="form-item" id="edit-mode-wrapper">
+ <select name="mode" class="form-select" id="edit-mode" ><option value="1">Flat list - collapsed</option><option value="2">Flat list - expanded</option><option value="3">Threaded list - collapsed</option><option value="4" selected="selected">Threaded list - expanded</option></select>
+</div>
+<div class="form-item" id="edit-order-wrapper">
+ <select name="order" class="form-select" id="edit-order" ><option value="1" selected="selected">Date - newest first</option><option value="2">Date - oldest first</option></select>
+</div>
+<div class="form-item" id="edit-comments-per-page-wrapper">
+ <select name="comments_per_page" class="form-select" id="edit-comments-per-page" ><option value="10">10 comments per page</option><option value="30">30 comments per page</option><option value="50" selected="selected">50 comments per page</option><option value="70">70 comments per page</option><option value="90">90 comments per page</option><option value="150">150 comments per page</option><option value="200">200 comments per page</option><option value="250">250 comments per page</option><option value="300">300 comments per page</option></select>
+</div>
+<input type="submit" name="op" id="edit-submit" value="Save settings"  class="form-submit" />
+</div><div class="description">Select your preferred way to display the comments and click "Save settings" to activate your changes.</div>  </div>
+
+</div></div> <!-- /box-inner, /box -->
+
+</div></form>
+<a id="comment-346775"></a>
+<div class="comment comment-published odd first comment-by-anon"><div class="comment-inner clear-block">
+
+      <h3 class="title">
+      <a href="/content/creating-slide-show-backgrounds-xfce#comment-346775" class="active">Slackware 12.2.0 / cron / XFCE</a>          </h3>
+  
+  
+  <div class="picture">
+  <img src="/files/linuxjournal.com/images/personicon.jpg" alt="John Pate&#039;s picture" title="John Pate&#039;s picture"  /></div>
+
+  <div class="submitted">
+    Submitted by John Pate (not verified) on Sat, 12/26/2009 - 07:02.  </div>
+
+  <div class="content">
+    <p>For reasons that should be self-explanatory, this is the command line required for 'cron' to make this work for Slackware 12.2.0 using XFCE:</p>
+<p>/usr/bin/xfdesktop --display=:0.0 --reload</p>
+      </div>
+
+  
+</div></div> <!-- /comment-inner, /comment -->
+<a id="comment-346496"></a>
+<div class="comment comment-published even comment-by-anon"><div class="comment-inner clear-block">
+
+      <h3 class="title">
+      <a href="/content/creating-slide-show-backgrounds-xfce#comment-346496" class="active">Incorrect switch?</a>          </h3>
+  
+  
+  <div class="picture">
+  <img src="/files/linuxjournal.com/images/personicon.jpg" alt="Don il&#039;s picture" title="Don il&#039;s picture"  /></div>
+
+  <div class="submitted">
+    Submitted by Don il (not verified) on Thu, 12/17/2009 - 22:21.  </div>
+
+  <div class="content">
+    <p>When I issue the command<br />
+xfdesktop --refresh</p>
+<p>It says:<br />
+xfdesktop: Unknown option: --refresh<br />
+The options:<br />
+    --reload      Reload all settings, refresh image list<br />
+    --menu        Pop up the menu (at the current mouse      position)<br />
+    --windowlist  Pop up the window list (at the current mouse position)<br />
+    --quit        Cause xfdesktop to quit</p>
+<p>Then I use<br />
+xfdesktop --reload</p>
+<p>And it works ok.</p>
+      </div>
+
+  
+</div></div> <!-- /comment-inner, /comment -->
+<div class="indented"><a id="comment-346499"></a>
+<div class="comment comment-published odd last comment-by-author"><div class="comment-inner clear-block">
+
+      <h3 class="title">
+      <a href="/content/creating-slide-show-backgrounds-xfce#comment-346499" class="active">You were right...</a>          </h3>
+  
+  
+  <div class="picture">
+  <a href="/users/ross-larson" title="View user profile."><img src="http://www.linuxjournal.com/files/linuxjournal.com/ufiles/pictures/picture-1010536.jpg" alt="Ross Larson&#039;s picture" title="Ross Larson&#039;s picture"  /></a></div>
+
+  <div class="submitted">
+    Submitted by <a href="/users/ross-larson" title="View user profile.">Ross Larson</a> on Fri, 12/18/2009 - 00:50.  </div>
+
+  <div class="content">
+    <p>I mistyped the command.  It should be "xfdesktop --reload".  (I have since edited the document.)  Unfortunately, it still doesn't work for me in Ubuntu 9.04 with XFCE installed as an add-on.  I still have to kill xfdesktop manually.  But, if "xfdesktop --reload" works for you, feel free to put it in the application/panel shortcut instead of "killall -HUP xfdesktop".</p>
+        <div class="user-signature clear-block">
+      <p>Linux rocks!<br />
+Personal blog: zootlinux.blogspot.com</p>
+    </div>
+      </div>
+
+  
+</div></div> <!-- /comment-inner, /comment -->
+</div>  </div>
+        </div> <!-- /#content-area -->
+
+        
+                  <div id="content-bottom" class="region region-content_bottom">
+            <div id="block-block-106" class="block block-block region-odd odd region-count-1 count-13"><div class="block-inner">
+
+  
+  <div class="content">
+    <!--paging_filter--><div id="lead-gen-wrapper"> 
+<div id="lead-gen"> 
+<div class="lead-gen-vert-rule"> 
+<div class="lead-gen-left"> 
+<div class="webcast heading"> 
+<div style="float:left;">White Paper
+</div> 
+<div class="lead-gen-read-more"><a href="/whitepapers">More Resources</a>
+</div> 
+</div> 
+<div class="lead-gen-content"> 
+
+<div class="webcast"> <a class="lead-gen-head" href="http://www.linuxjournal.com/content/download-fabric-based-computing-enables-optimizes-hyperscale-data-centers">Fabric-Based Computing Enables Optimized Hyperscale Data Centers</a> 
+<p class="lead-gen-description">Today’s modular x86 servers are compute-centric, designed as a least common denominator to support a wide range of IT workloads. Those generic, virtualized IT workloads have much different resource optimization requirements than hyperscale and cloud applications. They have resulted in a “one size fits all” enterprise IT architecture that is not optimized for a specific set of IT workloads, and especially not emerging hyperscale workloads, such as web applications, big data, and object storage. In this report, you will learn how shifting the focus from traditional compute-centric IT architectures to an innovative disaggregated fabric-based architecture can optimize and scale your data center.
+</p>
+<p class="lead-gen-learn_more"><a href="http://www.linuxjournal.com/content/download-fabric-based-computing-enables-optimizes-hyperscale-data-centers">Learn More</a></p> 
+<p class="lead-gen_sponsor">Sponsored by AMD</p> 
+</div> 
+
+</div> 
+</div> 
+<div class="lead-gen-right"> 
+<div class="download heading"> 
+<div style="float:left;">White Paper</div> 
+<div class="lead-gen-read-more">
+<a href="/whitepapers">More Resources</a>
+</div> 
+</div> 
+<div class="lead-gen-content"> 
+<div class="download"> 
+<a class="lead-gen-head" href="http://www.linuxjournal.com/content/download-free-white-paper-using-open-source-framework-catch-bad-guy">
+Red Hat White Paper: Using an Open Source Framework to Catch the Bad Guy</a> 
+<p class="lead-gen-description"><em>Built-in forensics, incident response, and security with Red Hat Enterprise Linux 6</em>
+</p><p class="lead-gen-description">
+Every security policy provides guidance and requirements for ensuring adequate protection of information and data, as well as high-level technical and administrative security requirements for a system in a given environment. Traditionally, providing security for a system focuses on the confidentiality of the information on it. However, protecting the data integrity and system and data availability is just as important. For example, when processing United States intelligence information, there are three attributes that require protection: confidentiality, integrity, and availability.
+</p><p class="lead-gen-description">
+Learn more about catching the bad guy in this free white paper.</p> 
+<p class="lead-gen-learn_more">
+<a href="http://www.linuxjournal.com/content/download-free-white-paper-using-open-source-framework-catch-bad-guy">Learn More</a></p> 
+<p class="lead-gen_sponsor">Sponsored by DLT Solutions</p> 
+</div> 
+
+</div> 
+</div> 
+</div> 
+</div> 
+<div class="clear">
+</div>
+</div>  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+          </div> <!-- /#content-bottom -->
+        
+      </div></div> <!-- /#content-inner, /#content -->
+
+              <div id="navbar"><div id="navbar-inner" class="clear-block region region-navbar">
+
+          <a name="navigation" id="navigation"></a>
+
+          
+                      <div id="primary">
+              <ul class="links"><li class="menu-158 first"><a href="/subscriptions">Subscribe</a></li>
+<li class="menu-150"><a href="/blog">Blogs</a></li>
+<li class="menu-1802"><a href="/tag/reviews" title="">Reviews</a></li>
+<li class="menu-187"><a href="/tag/how-tos">HOWTOs</a></li>
+<li class="menu-1803"><a href="/whitepapers" title="">Knowledge Hub</a></li>
+<li class="menu-71"><a href="/tag/tech-tips" title="">Hep &amp; Tips</a></li>
+<li class="menu-181"><a href="/getlinux">How to Get Linux</a></li>
+<li class="menu-184 last"><a href="/gettinghelp">Getting Help</a></li>
+</ul> <div id="searchbox">
+ 
+<div id="cse-search-form" style="width: 100%;">Loading</div>
+<script src="//www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript"> 
+  google.load('search', '1', {language : 'en'});
+  google.setOnLoadCallback(function() {
+    var customSearchControl = new google.search.CustomSearchControl(
+      '000332554451520836487:ikifqzncxvw');
+
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    var options = new google.search.DrawOptions();
+    options.enableSearchboxOnly("http://linuxjournal.com/googlesearch","s");
+    customSearchControl.draw('cse-search-form', options);
+  }, true);
+</script>
+<link rel="stylesheet" href="//www.google.com/cse/style/look/default.css" type="text/css" />
+<style type="text/css">
+  input.gsc-input {
+    border-color: #EEEEEE;
+  }
+  input.gsc-search-button {
+    border-color: #666666;
+    background-color: #CECECE;
+  }
+</style>
+</div><!-- /#searchbox -->
+            </div> <!-- /#primary -->
+          
+          
+          
+        </div></div> <!-- /#navbar-inner, /#navbar -->
+      
+      
+              <div id="sidebar-right"><div id="sidebar-right-inner" class="region region-right">
+          <div id="block-block-44" class="block block-block region-odd even region-count-1 count-4"><div class="block-inner">
+
+  
+  <div class="content">
+    <!--paging_filter--><!-- PUT THIS TAG IN DESIRED LOCATION OF SLOT Large_Rectangle336x280
+     -->
+<script type="text/javascript">
+  GA_googleFillSlot("Large_Rectangle336x280");
+</script>
+<!-- END OF TAG FOR SLOT Large_Rectangle336x280
+     -->  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+<div id="block-menu-menu-channels" class="block block-menu region-even odd region-count-2 count-5"><div class="block-inner">
+
+      <h2 class="title">Trending Topics</h2>
+  
+  <div class="content">
+    <ul class="menu"><li class="leaf first"><a href="/tag/cloud" title="">Cloud</a></li>
+<li class="leaf"><a href="/tag/hpc" title="">HPC</a></li>
+<li class="leaf"><a href="/tag/mobile" title="">Mobile</a></li>
+<li class="leaf"><a href="/tag/security" title="">Security</a></li>
+<li class="leaf"><a href="/tag/sysadmin" title="">SysAdmin</a></li>
+<li class="leaf last"><a href="/tag/web-development" title="">Web Development</a></li>
+</ul>  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+<div id="block-quicktabs-1" class="block block-quicktabs region-odd even region-count-3 count-6"><div class="block-inner">
+
+  
+  <div class="content">
+    <div id="quicktabs-1" class="quicktabs_wrapper quicktabs-style-zen"><ul class="quicktabs_tabs quicktabs-style-zen"><li class="qtab-0 active first"><a href="/content/creating-slide-show-backgrounds-xfce?quicktabs_1=0#quicktabs-1" id="quicktabs-tab-1-0" class="qt_tab active">The Latest</a></li><li class="qtab-1"><a href="/content/creating-slide-show-backgrounds-xfce?quicktabs_1=1#quicktabs-1" id="quicktabs-tab-1-1" class="qt_tab active">Popular</a></li><li class="qtab-2 last"><a href="/content/creating-slide-show-backgrounds-xfce?quicktabs_1=2#quicktabs-1" id="quicktabs-tab-1-2" class="qt_tab active">Recent Comments</a></li></ul><div id="quicktabs_container_1" class="quicktabs_main quicktabs-style-zen"><div id="quicktabs_tabpage_1_0" class="quicktabs_tabpage"><div id="block-views-latest_stories-block_1" class="block block-views region-odd odd region-count-1 count-1"><div class="block-inner">
+
+  
+  <div class="content">
+    <div class="view view-latest-stories view-id-latest_stories view-display-id-block_1 view-dom-id-1">
+    
+  
+  
+      <div class="view-content">
+      <table class="views-table cols-6">
+    <thead>
+    <tr>
+              <th class="views-field views-field-title">
+                  </th>
+              <th class="views-field views-field-created">
+                  </th>
+          </tr>
+  </thead>
+  <tbody>
+          <tr class="odd views-row-first">
+                  <td class="views-field views-field-title">
+            <a href="/content/home-my-backup-data-center">Home, My Backup Data Center</a>          </td>
+                  <td class="views-field views-field-created">
+            May 13, 2013          </td>
+              </tr>
+          <tr class="even">
+                  <td class="views-field views-field-title">
+            <a href="/content/non-linux-foss-seashore">Non-Linux FOSS: Seashore</a>          </td>
+                  <td class="views-field views-field-created">
+            May 10, 2013          </td>
+              </tr>
+          <tr class="odd">
+                  <td class="views-field views-field-title">
+            <a href="/content/trying-tame-tablet">Trying to Tame the Tablet</a>          </td>
+                  <td class="views-field views-field-created">
+            May 08, 2013          </td>
+              </tr>
+          <tr class="even">
+                  <td class="views-field views-field-title">
+            <a href="/content/dart-new-web-programming-experience">Dart: a New Web Programming Experience</a>          </td>
+                  <td class="views-field views-field-created">
+            May 07, 2013          </td>
+              </tr>
+          <tr class="odd">
+                  <td class="views-field views-field-title">
+            <a href="/content/android-candy-outer-space-your-pocket">Android Candy: Outer Space, in Your Pocket</a>          </td>
+                  <td class="views-field views-field-created">
+            May 06, 2013          </td>
+              </tr>
+          <tr class="even views-row-last">
+                  <td class="views-field views-field-title">
+            <a href="/content/one-hand-slapping">One Hand Slapping</a>          </td>
+                  <td class="views-field views-field-created">
+            May 02, 2013          </td>
+              </tr>
+      </tbody>
+</table>
+    </div>
+  
+  
+  
+      
+<div class="more-link">
+  <a href="/latest">
+    more  </a>
+</div>
+  
+  
+  
+</div>   </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+</div><div id="quicktabs_tabpage_1_1" class="quicktabs_tabpage quicktabs-hide"><div id="block-views-popular-block_1" class="block block-views region-even even region-count-2 count-2"><div class="block-inner">
+
+  
+  <div class="content">
+    <div class="view view-popular view-id-popular view-display-id-block_1 view-dom-id-2">
+    
+  
+  
+      <div class="view-content">
+      <div class="item-list">
+    <ul>
+          <li class="views-row views-row-1 views-row-odd views-row-first">  
+  <span class="views-field-title">
+                <span class="field-content"><a href="/content/home-my-backup-data-center">Home, My Backup Data Center</a></span>
+  </span>
+</li>
+          <li class="views-row views-row-2 views-row-even">  
+  <span class="views-field-title">
+                <span class="field-content"><a href="/content/dart-new-web-programming-experience">Dart: a New Web Programming Experience</a></span>
+  </span>
+</li>
+          <li class="views-row views-row-3 views-row-odd">  
+  <span class="views-field-title">
+                <span class="field-content"><a href="/content/trying-tame-tablet">Trying to Tame the Tablet</a></span>
+  </span>
+</li>
+          <li class="views-row views-row-4 views-row-even">  
+  <span class="views-field-title">
+                <span class="field-content"><a href="/content/topic-discussion-open-source-feature-richness">A Topic for Discussion - Open Source Feature-Richness?</a></span>
+  </span>
+</li>
+          <li class="views-row views-row-5 views-row-odd">  
+  <span class="views-field-title">
+                <span class="field-content"><a href="/node/1084243">New Products</a></span>
+  </span>
+</li>
+          <li class="views-row views-row-6 views-row-even">  
+  <span class="views-field-title">
+                <span class="field-content"><a href="/article/9585">Validate an E-Mail Address with PHP, the Right Way</a></span>
+  </span>
+</li>
+          <li class="views-row views-row-7 views-row-odd">  
+  <span class="views-field-title">
+                <span class="field-content"><a href="/magazine/paranoid-penguin-building-secure-squid-web-proxy-part-iv">Paranoid Penguin - Building a Secure Squid Web Proxy, Part IV</a></span>
+  </span>
+</li>
+          <li class="views-row views-row-8 views-row-even">  
+  <span class="views-field-title">
+                <span class="field-content"><a href="/content/non-linux-foss-seashore">Non-Linux FOSS: Seashore</a></span>
+  </span>
+</li>
+          <li class="views-row views-row-9 views-row-odd">  
+  <span class="views-field-title">
+                <span class="field-content"><a href="/node/1084522">New Products</a></span>
+  </span>
+</li>
+          <li class="views-row views-row-10 views-row-even views-row-last">  
+  <span class="views-field-title">
+                <span class="field-content"><a href="/content/tech-tip-really-simple-http-server-python">Tech Tip: Really Simple HTTP Server with Python</a></span>
+  </span>
+</li>
+      </ul>
+</div>    </div>
+  
+  
+  
+      
+<div class="more-link">
+  <a href="/popular/today">
+    more  </a>
+</div>
+  
+  
+  
+</div>   </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+</div><div id="quicktabs_tabpage_1_2" class="quicktabs_tabpage quicktabs-hide"><div id="block-comment-0" class="block block-comment region-odd odd region-count-3 count-3"><div class="block-inner">
+
+  
+  <div class="content">
+    <div class="item-list"><ul><li class="first"><a href="/content/home-my-backup-data-center#comment-375973">Great article Kyle!</a><br />5 hours 26 min ago</li>
+<li><a href="/content/home-my-backup-data-center#comment-375972">You should check out LVMsync</a><br />5 hours 40 min ago</li>
+<li><a href="/content/gnuplot%E2%80%94-grandfather-graphing-utilities#comment-375971">translation</a><br />6 hours 35 min ago</li>
+<li><a href="/content/updating-firmware-linux-based-devices#comment-375970">thanks for sharing</a><br />14 hours 28 min ago</li>
+<li><a href="/content/android-independence#comment-375969">i love the way Android give</a><br />19 hours 6 min ago</li>
+<li><a href="/content/how-deploy-server#comment-375968">nice share info</a><br />19 hours 12 min ago</li>
+<li><a href="/node/1084522#comment-375967">nice post</a><br />20 hours 31 min ago</li>
+<li><a href="/node/1084522#comment-375966">Good Share</a><br />20 hours 33 min ago</li>
+<li><a href="/content/trying-tame-tablet#comment-375965">What is Limited Liability</a><br />1 day 4 hours ago</li>
+<li class="last"><a href="/content/trying-tame-tablet#comment-375964">Google Docs</a><br />1 day 10 hours ago</li>
+</ul></div>  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+</div></div></div>  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+<div id="block-webform-client-block-1084534" class="block block-webform region-even odd region-count-4 count-7"><div class="block-inner">
+
+      <h2 class="title">NEW! Enter to Win an Adafruit Raspberry Pi Model B 512MB RAM</h2>
+  
+  <div class="content">
+    <div id="node-1084534" class="node node-type-webform"><div class="node-inner">
+
+
+
+  
+
+  
+  
+  
+
+
+  
+  
+
+  
+  
+  
+    
+
+
+  <div class="content">
+
+    <!--paging_filter--><img src="http://www.linuxjournal.com/files/linuxjournal.com/ufiles/998_MED.jpg" width="150" height="116" align="left" vspace="5" hspace="10" alt=""> <img src="http://www.linuxjournal.com/files/linuxjournal.com/images/adafruit.jpg" style="clear:left;" align="left" width="150" vspace="5" hspace="10" alt=""><p>It's Raspberry Pi month at <em>Linux Journal</em>. Each week in May,&nbsp;<a href="http://adafruit.com/">Adafruit</a> will be giving away a Pi-related prize to a lucky, randomly drawn&nbsp;<em>LJ</em> reader. Winners will be announced weekly.</p><p>Fill out the fields below to enter to win this week's prize-- a <a href="http://www.adafruit.com/products/998">Raspberry Pi Model B 512MB RAM</a>.</p>
+
+Congratulations to last week's winner: Jack Davis!<form action="/content/enter-win-and-adafruit-raspberry-pi-product"  accept-charset="UTF-8" method="post" id="webform-client-form-1084534" class="webform-client-form" enctype="multipart/form-data">
+<div><div class="webform-component webform-component-textfield" id="webform-component-full-name"><div class="form-item" id="edit-submitted-full-name-wrapper">
+ <label for="edit-submitted-full-name">Full Name: <span class="form-required" title="This field is required.">*</span></label>
+ <input type="text" maxlength="128" name="submitted[full_name]" id="edit-submitted-full-name" size="60" value="" class="form-text required" />
+</div>
+</div><div class="webform-component webform-component-email" id="webform-component-email"><div class="form-item" id="edit-submitted-email-wrapper">
+ <label for="edit-submitted-email">Email: <span class="form-required" title="This field is required.">*</span></label>
+ <input class="form-text form-email required email" type="email" id="edit-submitted-email" name="submitted[email]" size="60" />
+</div>
+</div><div class="webform-component webform-component-textfield" id="webform-component-job-title"><div class="form-item" id="edit-submitted-job-title-wrapper">
+ <label for="edit-submitted-job-title">Job Title: <span class="form-required" title="This field is required.">*</span></label>
+ <input type="text" maxlength="128" name="submitted[job_title]" id="edit-submitted-job-title" size="60" value="" class="form-text required" />
+</div>
+</div><div class="webform-component webform-component-select" id="webform-component-country"><div class="form-item" id="edit-submitted-country-wrapper">
+ <label for="edit-submitted-country">Country: <span class="form-required" title="This field is required.">*</span></label>
+ <select name="submitted[country]" class="form-select required" id="edit-submitted-country" ><option value="" selected="selected">- Select -</option><option value="AF	">	AFGHANISTAN</option><option value="AX	">	ALAND ISLANDS</option><option value="AL	">	ALBANIA</option><option value="DZ	">	ALGERIA</option><option value="AS	">	AMERICAN SAMOA</option><option value="AD	">	ANDORRA</option><option value="AO	">	ANGOLA</option><option value="AI	">	ANGUILLA</option><option value="AQ	">	ANTARCTICA</option><option value="AG	">	ANTIGUA AND BARBUDA</option><option value="AR	">	ARGENTINA</option><option value="AM	">	ARMENIA</option><option value="AW	">	ARUBA</option><option value="AU	">	AUSTRALIA</option><option value="AT	">	AUSTRIA</option><option value="AZ	">	AZERBAIJAN</option><option value="BS	">	BAHAMAS</option><option value="BH	">	BAHRAIN</option><option value="BD	">	BANGLADESH</option><option value="BB	">	BARBADOS</option><option value="BY	">	BELARUS</option><option value="BE	">	BELGIUM</option><option value="BZ	">	BELIZE</option><option value="BJ	">	BENIN</option><option value="BM	">	BERMUDA</option><option value="BT	">	BHUTAN</option><option value="BO	">	BOLIVIA</option><option value="BA	">	BOSNIA AND HERZEGOVINA</option><option value="BW	">	BOTSWANA</option><option value="BV	">	BOUVET ISLAND</option><option value="BR	">	BRAZIL</option><option value="IO	">	BRITISH INDIAN OCEAN TERRITORY</option><option value="BN	">	BRUNEI DARUSSALAM</option><option value="BG	">	BULGARIA</option><option value="BF	">	BURKINA FASO</option><option value="BI	">	BURUNDI</option><option value="KH	">	CAMBODIA</option><option value="CM	">	CAMEROON</option><option value="CA	">	CANADA</option><option value="CV	">	CAPE VERDE</option><option value="KY	">	CAYMAN ISLANDS</option><option value="CF	">	CENTRAL AFRICAN REPUBLIC</option><option value="TD	">	CHAD</option><option value="CL	">	CHILE</option><option value="CN	">	CHINA</option><option value="CX	">	CHRISTMAS ISLAND</option><option value="CC	">	COCOS (KEELING) ISLANDS</option><option value="CO	">	COLOMBIA</option><option value="KM	">	COMOROS</option><option value="CG	">	CONGO</option><option value="CD	">	CONGO, THE DEMOCRATIC REPUBLIC OF THE</option><option value="CK	">	COOK ISLANDS</option><option value="CR	">	COSTA RICA</option><option value="CI	">	COTE D&#039;IVOIRE</option><option value="HR	">	CROATIA</option><option value="CU	">	CUBA</option><option value="CY	">	CYPRUS</option><option value="CZ	">	CZECH REPUBLIC</option><option value="DK	">	DENMARK</option><option value="DJ	">	DJIBOUTI</option><option value="DM	">	DOMINICA</option><option value="DO	">	DOMINICAN REPUBLIC</option><option value="EC	">	ECUADOR</option><option value="EG	">	EGYPT</option><option value="SV	">	EL SALVADOR</option><option value="GQ	">	EQUATORIAL GUINEA</option><option value="ER	">	ERITREA</option><option value="EE	">	ESTONIA</option><option value="ET	">	ETHIOPIA</option><option value="FK	">	FALKLAND ISLANDS (MALVINAS)</option><option value="FO	">	FAROE ISLANDS</option><option value="FJ	">	FIJI</option><option value="FI	">	FINLAND</option><option value="FR	">	FRANCE</option><option value="GF	">	FRENCH GUIANA</option><option value="PF	">	FRENCH POLYNESIA</option><option value="TF	">	FRENCH SOUTHERN TERRITORIES</option><option value="GA	">	GABON</option><option value="GM	">	GAMBIA</option><option value="GE	">	GEORGIA</option><option value="DE	">	GERMANY</option><option value="GH	">	GHANA</option><option value="GI	">	GIBRALTAR</option><option value="GR	">	GREECE</option><option value="GL	">	GREENLAND</option><option value="GD	">	GRENADA</option><option value="GP	">	GUADELOUPE</option><option value="GU	">	GUAM</option><option value="GT	">	GUATEMALA</option><option value="GG	">	GUERNSEY</option><option value="GN	">	GUINEA</option><option value="GW	">	GUINEA-BISSAU</option><option value="GY	">	GUYANA</option><option value="HT	">	HAITI</option><option value="HM	">	HEARD ISLAND AND MCDONALD ISLANDS</option><option value="VA	">	HOLY SEE (VATICAN CITY STATE)</option><option value="HN	">	HONDURAS</option><option value="HK	">	HONG KONG</option><option value="HU	">	HUNGARY</option><option value="IS	">	ICELAND</option><option value="IN	">	INDIA</option><option value="ID	">	INDONESIA</option><option value="IR	">	IRAN, ISLAMIC REPUBLIC OF</option><option value="IQ	">	IRAQ</option><option value="IE	">	IRELAND</option><option value="IM	">	ISLE OF MAN</option><option value="IL	">	ISRAEL</option><option value="IT	">	ITALY</option><option value="JM	">	JAMAICA</option><option value="JP	">	JAPAN</option><option value="JE	">	JERSEY</option><option value="JO	">	JORDAN</option><option value="KZ	">	KAZAKHSTAN</option><option value="KE	">	KENYA</option><option value="KI	">	KIRIBATI</option><option value="KP	">	KOREA, DEMOCRATIC PEOPLE&#039;S REPUBLIC OF</option><option value="KR	">	KOREA, REPUBLIC OF</option><option value="KW	">	KUWAIT</option><option value="KG	">	KYRGYZSTAN</option><option value="LA	">	LAO PEOPLE&#039;S DEMOCRATIC REPUBLIC</option><option value="LV	">	LATVIA</option><option value="LB	">	LEBANON</option><option value="LS	">	LESOTHO</option><option value="LR	">	LIBERIA</option><option value="LY	">	LIBYAN ARAB JAMAHIRIYA</option><option value="LI	">	LIECHTENSTEIN</option><option value="LT	">	LITHUANIA</option><option value="LU	">	LUXEMBOURG</option><option value="MO	">	MACAO</option><option value="MK	">	MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF</option><option value="MG	">	MADAGASCAR</option><option value="MW	">	MALAWI</option><option value="MY	">	MALAYSIA</option><option value="MV	">	MALDIVES</option><option value="ML	">	MALI</option><option value="MT	">	MALTA</option><option value="MH	">	MARSHALL ISLANDS</option><option value="MQ	">	MARTINIQUE</option><option value="MR	">	MAURITANIA</option><option value="MU	">	MAURITIUS</option><option value="YT	">	MAYOTTE</option><option value="MX	">	MEXICO</option><option value="FM	">	MICRONESIA, FEDERATED STATES OF</option><option value="MD	">	MOLDOVA, REPUBLIC OF</option><option value="MC	">	MONACO</option><option value="MN	">	MONGOLIA</option><option value="ME	">	MONTENEGRO</option><option value="MS	">	MONTSERRAT</option><option value="MA	">	MOROCCO</option><option value="MZ	">	MOZAMBIQUE</option><option value="MM	">	MYANMAR</option><option value="NA	">	NAMIBIA</option><option value="NR	">	NAURU</option><option value="NP	">	NEPAL</option><option value="NL	">	NETHERLANDS</option><option value="AN	">	NETHERLANDS ANTILLES</option><option value="NC	">	NEW CALEDONIA</option><option value="NZ	">	NEW ZEALAND</option><option value="NI	">	NICARAGUA</option><option value="NE	">	NIGER</option><option value="NG	">	NIGERIA</option><option value="NU	">	NIUE</option><option value="NF	">	NORFOLK ISLAND</option><option value="MP	">	NORTHERN MARIANA ISLANDS</option><option value="NO	">	NORWAY</option><option value="OM	">	OMAN</option><option value="PK	">	PAKISTAN</option><option value="PW	">	PALAU</option><option value="PS	">	PALESTINIAN TERRITORY, OCCUPIED</option><option value="PA	">	PANAMA</option><option value="PG	">	PAPUA NEW GUINEA</option><option value="PY	">	PARAGUAY</option><option value="PE	">	PERU</option><option value="PH	">	PHILIPPINES</option><option value="PN	">	PITCAIRN</option><option value="PL	">	POLAND</option><option value="PT	">	PORTUGAL</option><option value="PR	">	PUERTO RICO</option><option value="QA	">	QATAR</option><option value="RE	">	RÉUNION</option><option value="RO	">	ROMANIA</option><option value="RU	">	RUSSIAN FEDERATION</option><option value="RW	">	RWANDA</option><option value="BL	">	SAINT BARTHELEMY</option><option value="SH	">	SAINT HELENA</option><option value="KN	">	SAINT KITTS AND NEVIS</option><option value="LC	">	SAINT LUCIA</option><option value="MF	">	SAINT MARTIN</option><option value="PM	">	SAINT PIERRE AND MIQUELON</option><option value="VC	">	SAINT VINCENT AND THE GRENADINES</option><option value="WS	">	SAMOA</option><option value="SM	">	SAN MARINO</option><option value="ST	">	SAO TOME AND PRINCIPE</option><option value="SA	">	SAUDI ARABIA</option><option value="SN	">	SENEGAL</option><option value="RS	">	SERBIA</option><option value="SC	">	SEYCHELLES</option><option value="SL	">	SIERRA LEONE</option><option value="SG	">	SINGAPORE</option><option value="SK	">	SLOVAKIA</option><option value="SI	">	SLOVENIA</option><option value="SB	">	SOLOMON ISLANDS</option><option value="SO	">	SOMALIA</option><option value="ZA	">	SOUTH AFRICA</option><option value="GS	">	SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS</option><option value="ES	">	SPAIN</option><option value="LK	">	SRI LANKA</option><option value="SD	">	SUDAN</option><option value="SR	">	SURINAME</option><option value="SJ	">	SVALBARD AND JAN MAYEN</option><option value="SZ	">	SWAZILAND</option><option value="SE	">	SWEDEN</option><option value="CH	">	SWITZERLAND</option><option value="SY	">	SYRIAN ARAB REPUBLIC</option><option value="TW	">	TAIWAN, PROVINCE OF CHINA</option><option value="TJ	">	TAJIKISTAN</option><option value="TZ	">	TANZANIA, UNITED REPUBLIC OF</option><option value="TH	">	THAILAND</option><option value="TL	">	TIMOR-LESTE</option><option value="TG	">	TOGO</option><option value="TK	">	TOKELAU</option><option value="TO	">	TONGA</option><option value="TT	">	TRINIDAD AND TOBAGO</option><option value="TN	">	TUNISIA</option><option value="TR	">	TURKEY</option><option value="TM	">	TURKMENISTAN</option><option value="TC	">	TURKS AND CAICOS ISLANDS</option><option value="TV	">	TUVALU</option><option value="UG	">	UGANDA</option><option value="UA	">	UKRAINE</option><option value="AE	">	UNITED ARAB EMIRATES</option><option value="GB	">	UNITED KINGDOM</option><option value="US	">	UNITED STATES</option><option value="UM	">	UNITED STATES MINOR OUTLYING ISLANDS</option><option value="UY	">	URUGUAY</option><option value="UZ	">	UZBEKISTAN</option><option value="VU	">	VANUATU</option><option value="VE	">	VENEZUELA</option><option value="VN	">	VIET NAM</option><option value="VG	">	VIRGIN ISLANDS, BRITISH</option><option value="VI	">	VIRGIN ISLANDS, U.S.</option><option value="WF	">	WALLIS AND FUTUNA</option><option value="EH	">	WESTERN SAHARA</option><option value="YE	">	YEMEN</option><option value="ZM	">	ZAMBIA</option><option value="ZW	">	ZIMBABWE</option></select>
+</div>
+</div><input type="hidden" name="details[sid]" id="edit-details-sid" value=""  />
+<input type="hidden" name="details[page_num]" id="edit-details-page-num" value="1"  />
+<input type="hidden" name="details[page_count]" id="edit-details-page-count" value="1"  />
+<input type="hidden" name="details[finished]" id="edit-details-finished" value="0"  />
+<input type="hidden" name="form_build_id" id="form-d50d2b4ade9ec5fa039cf5d2f7172a0a" value="form-d50d2b4ade9ec5fa039cf5d2f7172a0a"  />
+<input type="hidden" name="form_id" id="edit-webform-client-form-1084534" value="webform_client_form_1084534"  />
+<div id="edit-actions" class="form-actions form-wrapper"><input type="submit" name="op" id="edit-submit-1" value="Enter"  class="form-submit" />
+</div>
+</div></form>
+
+  </div>
+
+
+
+  
+ <!---->
+
+
+
+
+</div></div> <!-- /node-inner, /node -->
+
+
+  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+<div id="block-block-104" class="block block-block region-odd even region-count-5 count-8"><div class="block-inner">
+
+      <h2 class="title">Free Webinar: Linux Backup and Recovery</h2>
+  
+  <div class="content">
+    <!--paging_filter--><p>
+Most companies incorporate backup procedures for critical data, which can be restored quickly if a loss occurs. However, fewer companies are prepared for catastrophic system failures, in which they lose all data, the entire operating system, applications, settings, patches and more, reducing their system(s) to “bare metal.” After all, before data can be restored to a system, there must be a system to restore it to.
+</p>
+<p>
+In this one hour webinar, learn how to enhance your existing backup strategies for better disaster recovery preparedness using Storix System Backup Administrator (SBAdmin), a highly flexible bare-metal recovery solution for UNIX and Linux systems.
+</p>
+<p>
+<strong><a href="http://www.linuxjournal.com/content/register-linux-backup-and-recovery-webinar">Register now for this free webinar.</a></strong>
+</p>
+  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+<div id="block-webform-client-block-1084570" class="block block-webform region-even odd region-count-6 count-9"><div class="block-inner">
+
+      <h2 class="title">Developer Poll</h2>
+  
+  <div class="content">
+    <form action="/content/developer-poll"  accept-charset="UTF-8" method="post" id="webform-client-form-1084570" class="webform-client-form" enctype="multipart/form-data">
+<div><div class="webform-component webform-component-radios" id="webform-component-are-you-a-professional-app-or-web-developer"><div class="form-item">
+ <label>Are you a professional App or Web Developer?: <span class="form-required" title="This field is required.">*</span></label>
+ <div class="form-radios"><div class="form-item" id="edit-submitted-are-you-a-professional-app-or-web-developer-1-wrapper">
+ <label class="option" for="edit-submitted-are-you-a-professional-app-or-web-developer-1"><input type="radio" id="edit-submitted-are-you-a-professional-app-or-web-developer-1" name="submitted[are_you_a_professional_app_or_web_developer]" value="Yes"   class="form-radio" /> Yes</label>
+</div>
+<div class="form-item" id="edit-submitted-are-you-a-professional-app-or-web-developer-2-wrapper">
+ <label class="option" for="edit-submitted-are-you-a-professional-app-or-web-developer-2"><input type="radio" id="edit-submitted-are-you-a-professional-app-or-web-developer-2" name="submitted[are_you_a_professional_app_or_web_developer]" value="No"   class="form-radio" /> No</label>
+</div>
+</div>
+</div>
+</div><div class="webform-component webform-component-radios" id="webform-component-is-app-web-development-part-of-your-job"><div class="form-item">
+ <label>Is App/Web Development PART of your job?: <span class="form-required" title="This field is required.">*</span></label>
+ <div class="form-radios"><div class="form-item" id="edit-submitted-is-app-web-development-part-of-your-job-1-wrapper">
+ <label class="option" for="edit-submitted-is-app-web-development-part-of-your-job-1"><input type="radio" id="edit-submitted-is-app-web-development-part-of-your-job-1" name="submitted[is_app_web_development_part_of_your_job]" value="Yes"   class="form-radio" /> Yes</label>
+</div>
+<div class="form-item" id="edit-submitted-is-app-web-development-part-of-your-job-2-wrapper">
+ <label class="option" for="edit-submitted-is-app-web-development-part-of-your-job-2"><input type="radio" id="edit-submitted-is-app-web-development-part-of-your-job-2" name="submitted[is_app_web_development_part_of_your_job]" value="No"   class="form-radio" /> No</label>
+</div>
+</div>
+</div>
+</div><div class="webform-component webform-component-radios" id="webform-component-do-you-do-development-personally"><div class="form-item">
+ <label>Do you do development personally?: <span class="form-required" title="This field is required.">*</span></label>
+ <div class="form-radios"><div class="form-item" id="edit-submitted-do-you-do-development-personally-1-wrapper">
+ <label class="option" for="edit-submitted-do-you-do-development-personally-1"><input type="radio" id="edit-submitted-do-you-do-development-personally-1" name="submitted[do_you_do_development_personally]" value="Yes"   class="form-radio" /> Yes</label>
+</div>
+<div class="form-item" id="edit-submitted-do-you-do-development-personally-2-wrapper">
+ <label class="option" for="edit-submitted-do-you-do-development-personally-2"><input type="radio" id="edit-submitted-do-you-do-development-personally-2" name="submitted[do_you_do_development_personally]" value="No"   class="form-radio" /> No</label>
+</div>
+</div>
+</div>
+</div><input type="hidden" name="details[sid]" id="edit-details-sid-1" value=""  />
+<input type="hidden" name="details[page_num]" id="edit-details-page-num-1" value="1"  />
+<input type="hidden" name="details[page_count]" id="edit-details-page-count-1" value="1"  />
+<input type="hidden" name="details[finished]" id="edit-details-finished-1" value="0"  />
+<input type="hidden" name="form_build_id" id="form-e36d85aa7179a3c8c8edf121bc1f1565" value="form-e36d85aa7179a3c8c8edf121bc1f1565"  />
+<input type="hidden" name="form_id" id="edit-webform-client-form-1084570" value="webform_client_form_1084570"  />
+<div id="edit-actions" class="form-actions form-wrapper"><input type="submit" name="op" id="edit-submit-2" value="Submit"  class="form-submit" />
+</div>
+</div></form>
+  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+<div id="block-block-97" class="block block-block region-odd even region-count-7 count-10"><div class="block-inner">
+
+  
+  <div class="content">
+    <!--paging_filter--><!-- subscriptions -->
+<script type='text/javascript'>
+GA_googleFillSlot("subscriptions");
+</script>
+<br />
+<a class="red" href="http://www.linuxjournal.com/subs/customer_service">Already a subscriber? Click here for subscriber services.</a>
+
+  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+<div id="block-block-67" class="block block-block region-even odd region-count-8 count-11"><div class="block-inner">
+
+  
+  <div class="content">
+    <!--paging_filter--><p><a href="/enewsletters"><img alt=" Linux Newsletter" src="/files/linuxjournal.com/images/NewsletterBanner_T3b.jpg" /></a></p>
+<p><a href="/new-issue"><img alt="New Issue" src="/files/linuxjournal.com/images/SubscriberButton-May2013.png" /></a></p>
+  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+<div id="block-block-98" class="block block-block region-odd even region-count-9 count-12"><div class="block-inner">
+
+  
+  <div class="content">
+    <!--paging_filter--><!-- sidebar_bottom_lr -->
+<script type='text/javascript'>
+GA_googleFillSlot("sidebar_bottom_lr");
+</script>  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+        </div></div> <!-- /#sidebar-right-inner, /#sidebar-right -->
+      
+    </div></div> <!-- /#main-inner, /#main -->
+
+          <div id="footer"><div id="footer-inner" class="region region-footer">
+
+        
+        <div id="block-block-62" class="block block-block region-odd odd region-count-1 count-15"><div class="block-inner">
+
+  
+  <div class="content">
+    <!--paging_filter--><div id="subsform">  
+     
+        
+	<form  method="post" name="form" action= "https://www.pubservice.com/subnew2page.aspx?PC=LJ&amp;PK&amp;FC=" class="subform">
+        
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td valign="top">First Name</td>
+
+            <td valign="top" colspan="2">Last Name</td>
+          </tr>
+
+    
+          <tr>
+            <td valign="top"><input type="text" value="" name="FN" size= "18" maxlength="" class="form1" /></td>
+
+            <td valign="top" colspan="2"><input type="text" name="LN" value="" size= "18" class="form1" /></td>
+          </tr>
+          <tr>
+            <td valign="top" >Address 1</td>
+
+            <td valign="top" colspan="2">Address 2</td>
+
+
+          </tr>
+          <tr>
+            <td valign="top"><input type="text" value="" name="A1" size= "18" maxlength="" class="form1" /></td>
+
+            <td valign="top" colspan="2"><input type="text" value="" name="A2" size= "18" class="form1" /></td>
+
+  
+          </tr>
+          <tr>
+            <td valign="top">City</td>
+
+            <td valign="top">State</td>
+
+            <td valign="top">Zip</td>
+          </tr>
+
+    
+          <tr>
+            <td valign="top"><input type="text" value="" name="CT" size= "18" maxlength="" class="form1" /></td>
+
+            <td valign="top"><input type="text" value="" name="ST" size="2" class="form2" /></td>
+
+            <td valign="top"><input type="text" value="" name="ZP" size="5" maxlength="5" class="form3" /></td>
+          </tr>
+       <tr>
+            <td valign="top" colspan="3">Email</td>
+       </tr>
+       <tr>
+<td valign="top" colspan="3"><input type="text" value="" name="EM" size="40" class="form4" /></td>
+        </tr>
+        </table>
+        
+        <div align="center">
+         <input type="image" src="/files/linuxjournal.com/images/clickhere.jpg" />
+        </div>
+
+      </form>
+       <div class="subslinks">
+          <a href="https://www.pubservice.com/subnew2page.aspx?PC=LJ&amp;PK=MPUB911&amp;FC=CANADA&amp;SA=P">Canadian Residents</a> | <a href="https://www.pubservice.com/Subnew1.aspx?PC=LJ&amp;PK=MPUB911&amp;FC=UNITED%20STATES&amp;ref=1&amp;SA=P">Foreign Residents</a> | <a href="https://www.pubservice.com/subgift.aspx?PC=LJ">Gift Subscriptions</a> | <a href="http://www.linuxjournal.com/subs/customer_service">Customer Service</a> | <a href="/content/privacystatement">Privacy Policy</a>
+
+          </div>
+ 		</div> 
+  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+<div id="block-block-63" class="block block-block region-even even region-count-2 count-16"><div class="block-inner">
+
+  
+  <div class="content">
+    <!--paging_filter--><iframe src="http://webchat.freenode.net/?channels=linuxjournal" width="99%" height="275"></iframe>  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+<div id="block-menu-menu-subscriptions" class="block block-menu region-odd odd region-count-3 count-17"><div class="block-inner">
+
+      <h2 class="title">Digital Edition</h2>
+  
+  <div class="content">
+    <ul class="menu"><li class="leaf first"><a href="https://www.pubservice.com/subnew1.aspx?PC=LJ" title="Subscribe to Linux Journal">Subscribe/Renew</a></li>
+<li class="leaf"><a href="https://www.pubservice.com/subinfo.aspx?PC=LJ&amp;DO=P" title="Pay Your Subscription Bill">Pay My Bill</a></li>
+<li class="leaf"><a href="/subs/customer_service" title="">Customer Service</a></li>
+<li class="leaf"><a href="http://www.linuxjournal.com/digital" title="">Digital Downloads</a></li>
+<li class="leaf last"><a href="https://www.pubservice.com/subgift.aspx?PC=LJ" title="Give a Subscription to Linux Journal">Gift Subscriptions</a></li>
+</ul>  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+<div id="block-menu-menu-linux-resources" class="block block-menu region-even even region-count-4 count-18"><div class="block-inner">
+
+      <h2 class="title">Magazine Formats</h2>
+  
+  <div class="content">
+    <ul class="menu"><li class="leaf first"><a href="/content/pdf" title="PC/Mac">PC/Mac</a></li>
+<li class="leaf"><a href="/content/android" title="Android App">Android</a></li>
+<li class="leaf"><a href="/content/ios" title="iPhone/iPad">iPhone/iPad</a></li>
+<li class="leaf"><a href="/content/epub" title="EPUB Format">EPUB</a></li>
+<li class="leaf last"><a href="/content/kindle" title="Kindle Format">Kindle</a></li>
+</ul>  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+<div id="block-menu-menu-store" class="block block-menu region-odd odd region-count-5 count-19"><div class="block-inner">
+
+      <h2 class="title">The Store</h2>
+  
+  <div class="content">
+    <ul class="menu"><li class="leaf first"><a href="http://lj.mybigcommerce.com/categories/Buttons-%26-Stickers/" title="Buttons &amp; Stickers">Stickers</a></li>
+<li class="leaf"><a href="http://lj.mybigcommerce.com/categories/T%252dShirts-%26-Apparel/" title="T-shirts and Apparel">T-shirts</a></li>
+<li class="leaf"><a href="http://lj.mybigcommerce.com/categories/Posters/" title="Posters">Posters</a></li>
+<li class="leaf"><a href="http://lj.mybigcommerce.com/categories/Back-Issues-%252d-Digital-Downloads/" title="Buy Back Issues of Linux Journal">Back Issues</a></li>
+<li class="leaf last"><a href="http://linuxjournal.com/archive_cd" title="Archive CD">Archive CD</a></li>
+</ul>  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+<div id="block-menu-menu-about" class="block block-menu region-even even region-count-6 count-20"><div class="block-inner">
+
+      <h2 class="title">About Us</h2>
+  
+  <div class="content">
+    <ul class="menu"><li class="leaf first"><a href="/advertising" title="Advertise in Linux Journal">Advertise</a></li>
+<li class="leaf"><a href="/author" title="Write for Us">Author Info</a></li>
+<li class="leaf"><a href="/contact" title="Write a Letter to the Editor">Write a Letter</a></li>
+<li class="leaf"><a href="/aboutus/FAQ" title="Frequently Asked Questions">FAQ</a></li>
+<li class="leaf last"><a href="/staff" title="Masthead">Masthead</a></li>
+</ul>  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+<div id="block-menu-menu-the-site" class="block block-menu region-odd odd region-count-7 count-21"><div class="block-inner">
+
+      <h2 class="title">The Site</h2>
+  
+  <div class="content">
+    <ul class="menu"><li class="leaf first"><a href="/content/copyright" title="Copyright">Copyright</a></li>
+<li class="leaf"><a href="/rss_feeds" title="RSS Feeds">RSS Feeds</a></li>
+<li class="leaf"><a href="/content/privacy-statement" title="Privacy Statement">Privacy Policy</a></li>
+<li class="leaf"><a href="/events" title="Events">Events</a></li>
+<li class="leaf last"><a href="/aboutus" title="Contact Us">Contact Us</a></li>
+</ul>  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+<div id="block-block-70" class="block block-block region-even even region-count-8 count-22"><div class="block-inner">
+
+  
+  <div class="content">
+    <!--paging_filter--><div id="copyright">Copyright © 1994 - 2013 <em>Linux Journal</em>. All rights reserved.</div>
+  </div>
+
+  
+</div></div> <!-- /block-inner, /block -->
+
+      </div></div> <!-- /#footer-inner, /#footer -->
+    
+  </div></div> <!-- /#page-inner, /#page -->
+
+  
+  <div id="user_relationships_popup_form" class="user_relationships_ui_popup_form"></div><script type="text/javascript" src="/files/linuxjournal.com/ufiles/js/js_86b38be3ef272e57165d192792bc7062.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+var gPlusOne = "https://apis.google.com/js/plusone.js";var script_options = document.write(unescape("%3Cscript src='" + gPlusOne + "' type='text/javascript'%3E" + script_options + "%3C/script%3E"));
+//--><!]]>
+</script>
+<script type="text/javascript" src="http://s3.amazonaws.com/new.cetrk.com/pages/scripts/0010/8219.js"> </script>
+
+
+<script type="text/javascript">
+setTimeout(function(){var a=document.createElement("script");
+var b=document.getElementsByTagName("script")[0];
+a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0010/8219.js?"+Math.floor(new Date().getTime()/3600000);
+a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+</script>
+
+<script type="text/javascript">if(!NREUMQ.f){NREUMQ.f=function(){NREUMQ.push(["load",new Date().getTime()]);var e=document.createElement("script");e.type="text/javascript";e.src=(("http:"===document.location.protocol)?"http:":"https:")+"//"+"d1ros97qkrwjf5.cloudfront.net/42/eum/rum.js";document.body.appendChild(e);if(NREUMQ.a)NREUMQ.a();};NREUMQ.a=window.onload;window.onload=NREUMQ.f;};NREUMQ.push(["nrfj","beacon-4.newrelic.com","2a1dc4588f","1935594","b1NTNkdRWhFSVkBZWlYZcAFBWVsMHFtbVFBnRlAFUG9CC1ZC",0,505,new Date().getTime(),"","","","",""]);</script>
+</body>
+</html>
