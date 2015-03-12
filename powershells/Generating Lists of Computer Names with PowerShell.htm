@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US"><head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Generating Lists of Computer Names with PowerShell</title><meta name="robots" content="noodp,noydir">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <script src="Generating%20Lists%20of%20Computer%20Names%20with%20PowerShell_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript">
+//<![CDATA[
+try{if (!window.CloudFlare) {var CloudFlare=[{verbose:0,p:0,byc:0,owlid:"cf",bag2:1,mirage2:0,oracle:0,paths:{cloudflare:"/cdn-cgi/nexp/dok3v=1613a3a185/"},atok:"725f39b2b2d39dfb4066a274ab012e1a",petok:"c779441792e6708b16951ef4e7d424feb3c22600-1426117148-1800",zone:"hofferle.com",rocket:"a",apps:{"ga_key":{"ua":"UA-17060629-1","ga_bs":"2"}}}];document.write('<script type="text/javascript" src="//ajax.cloudflare.com/cdn-cgi/nexp/dok3v=919620257c/cloudflare.min.js"><'+'\/script>');}}catch(e){};
+//]]>
+</script><script type="text/javascript" src="Generating%20Lists%20of%20Computer%20Names%20with%20PowerShell_files/cloudflare.js"></script><style type="text/css">.cf-hidden { display: none; } .cf-invisible { visibility: hidden; }</style><script data-module="cloudflare/rocket" id="cfjs_block_8bfe7ca108" onload="CloudFlare.__cfjs_block_8bfe7ca108_load()" onerror="CloudFlare.__cfjs_block_8bfe7ca108_error()" onreadystatechange="CloudFlare.__cfjs_block_8bfe7ca108_readystatechange()" type="text/javascript" src="Generating%20Lists%20of%20Computer%20Names%20with%20PowerShell_files/rocket.js"></script>
+<link rel="alternate" type="application/rss+xml" title="Force Multiplication through IT Automation » Feed" href="http://feeds.feedburner.com/ForceMultiplicationThroughItAutomation">
+<link rel="alternate" type="application/rss+xml" title="Force Multiplication through IT Automation » Comments Feed" href="http://www.hofferle.com/comments/feed/">
+<link rel="canonical" href="http://www.hofferle.com/generating-lists-of-computer-names-with-powershell/">
+<link rel="stylesheet" id="crayon-css" href="Generating%20Lists%20of%20Computer%20Names%20with%20PowerShell_files/crayon.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-theme-classic-css" href="Generating%20Lists%20of%20Computer%20Names%20with%20PowerShell_files/classic.css" type="text/css" media="all">
+<link rel="stylesheet" id="crayon-font-monaco-css" href="Generating%20Lists%20of%20Computer%20Names%20with%20PowerShell_files/monaco.css" type="text/css" media="all">
+<link rel="stylesheet" id="prose_minified_stylesheet-css" href="Generating%20Lists%20of%20Computer%20Names%20with%20PowerShell_files/minified.css" type="text/css" media="all">
+<script data-rocketoptimized="true" type="text/rocketscript" data-rocketsrc="http://www.hofferle.com/wordpress/wp-includes/js/jquery/jquery.js?ver=1.11.1"></script>
+<script data-rocketoptimized="true" type="text/rocketscript" data-rocketsrc="http://www.hofferle.com/wordpress/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1"></script>
+<script data-rocketoptimized="true" type="text/rocketscript">
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"2.6.9","is_admin":"0","ajaxurl":"https:\/\/www.hofferle.com\/wordpress\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script data-rocketoptimized="true" type="text/rocketscript" data-rocketsrc="http://www.hofferle.com/wordpress/wp-content/plugins/crayon-syntax-highlighter/js/min/crayon.min.js?ver=2.6.9"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.hofferle.com/wordpress/xmlrpc.php?rsd">
+<link rel="Shortcut Icon" href="http://www.hofferle.com/wordpress/wp-content/themes/prose/images/favicon.ico" type="image/x-icon">
+<style type="text/css">#header{background:url(http://www.hofferle.com/wordpress/wp-content/uploads/2011/05/CoffeeLaptop2.jpg) no-repeat!important;}.custom-header #title a,.custom-header #title a:hover,.custom-header #description{color:#000000!important;}</style>
+<style type="text/css" id="custom-background-css">body.custom-background{background-color:#dedede;}</style>
+<script type="text/javascript">
+/* <![CDATA[ */
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-17060629-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+
+(function(b){(function(a){"__CF"in b&&"DJS"in b.__CF?b.__CF.DJS.push(a):"addEventListener"in b?b.addEventListener("load",a,!1):b.attachEvent("onload",a)})(function(){"FB"in b&&"Event"in FB&&"subscribe"in FB.Event&&(FB.Event.subscribe("edge.create",function(a){_gaq.push(["_trackSocial","facebook","like",a])}),FB.Event.subscribe("edge.remove",function(a){_gaq.push(["_trackSocial","facebook","unlike",a])}),FB.Event.subscribe("message.send",function(a){_gaq.push(["_trackSocial","facebook","send",a])}));"twttr"in b&&"events"in twttr&&"bind"in twttr.events&&twttr.events.bind("tweet",function(a){if(a){var b;if(a.target&&a.target.nodeName=="IFRAME")a:{if(a=a.target.src){a=a.split("#")[0].match(/[^?=&]+=([^&]*)?/g);b=0;for(var c;c=a[b];++b)if(c.indexOf("url")===0){b=unescape(c.split("=")[1]);break a}}b=void 0}_gaq.push(["_trackSocial","twitter","tweet",b])}})})})(window);
+/* ]]> */
+</script>
+<script>try {  for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){    var lastpass_f = document.forms[lastpass_iter];    if(typeof(lastpass_f.lpsubmitorig)=="undefined"){      if (typeof(lastpass_f.submit) == "function") {        lastpass_f.lpsubmitorig = lastpass_f.submit;        lastpass_f.submit = function(){          var form = this;          try {            if (document.documentElement && 'createEvent' in document)            {              var forms = document.getElementsByTagName('form');              for (var i=0 ; i<forms.length ; ++i)                if (forms[i]==form)                {                  var element = document.createElement('lpformsubmitdataelement');                  element.setAttribute('formnum',i);                  element.setAttribute('from','submithook');                  document.documentElement.appendChild(element);                  var evt = document.createEvent('Events');                  evt.initEvent('lpformsubmit',true,false);                  element.dispatchEvent(evt);                  break;                }            }          } catch (e) {}          try {            form.lpsubmitorig();          } catch (e) {}        }      }    }  }} catch (e) {}</script></head>
+<body class="single single-post postid-1339 single-format-standard custom-background custom-header header-full-width content-sidebar"><div id="wrap"><div id="nav"><div class="wrap"><ul id="menu-main" class="menu genesis-nav-menu menu-primary"><li id="menu-item-441" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-441"><a href="http://www.hofferle.com/">Home</a></li>
+<li id="menu-item-439" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-439"><a href="http://www.hofferle.com/contact/">Contact</a></li>
+<li id="menu-item-808" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-808"><a href="http://www.hofferle.com/about/">About</a></li>
+</ul></div></div><div id="header"><div class="wrap"><div id="title-area"><p id="title"><a href="http://www.hofferle.com/">Force Multiplication through IT Automation</a></p><p id="description">Jason Hofferle</p></div></div></div><div id="inner"><div id="content-sidebar-wrap"><div id="content" class="hfeed"><div class="breadcrumb"><a href="http://www.hofferle.com/">Home</a> / <a href="http://www.hofferle.com/category/powershell/">PowerShell</a> / Generating Lists of Computer Names with PowerShell</div><div class="post-1339 post type-post status-publish format-standard hentry category-powershell tag-active-directory tag-powershell entry"><h1 class="entry-title">Generating Lists of Computer Names with PowerShell</h1>
+<div class="post-info"><span class="date published time" title="2012-03-06T09:00:26+00:00">March 6, 2012</span> By <span class="author vcard"><span class="fn">Jason Hofferle</span></span> </div><div class="entry-content"><p>PowerShell
+ is particularly good for automating tasks that need to be performed on 
+multiple computers, and many cmdlets are designed to allow multiple 
+computer names to be specified. In many cases, the most difficult task 
+is getting together a list of computers to use with some of the cmdlets 
+and scripts available. There are several ways to generate these lists of
+ names, and very often the situation will dictate which method should be
+ used.</p>
+<p></p> 
+<div id="crayon-5500d21bf3661833424337" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px ! important; line-height: 15px ! important; height: auto;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px ! important; height: 18px ! important; line-height: 18px ! important; margin-top: -19px; display: none; z-index: 4;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div style="display: none;" class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">PowerShell</span></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea class="crayon-plain print-no" data-settings="dblclick" readonly="readonly" style="-moz-tab-size: 4; font-size: 12px ! important; line-height: 15px ! important; z-index: 0; opacity: 0; overflow: hidden;" wrap="soft">$Computers = "Computer01","Computer02","Computer03"
+Get-WmiObject -Class Win32_OperatingSystem -ComputerName $Computers</textarea></div>
+<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+<table style="" class="crayon-table">
+<tbody><tr class="crayon-row">
+<td class="crayon-nums " data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5500d21bf3661833424337-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5500d21bf3661833424337-2">2</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5500d21bf3661833424337-1"><span class="crayon-v">$Computers</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"Computer01"</span><span class="crayon-sy">,</span><span class="crayon-s">"Computer02"</span><span class="crayon-sy">,</span><span class="crayon-s">"Computer03"</span></div><div class="crayon-line crayon-striped-line" id="crayon-5500d21bf3661833424337-2"><span class="crayon-r ">Get-WmiObject</span><span class="crayon-h"> </span><span class="crayon-cn">-Class</span><span class="crayon-h"> </span><span class="crayon-i">Win32_OperatingSystem</span><span class="crayon-h"> </span><span class="crayon-cn">-ComputerName</span><span class="crayon-h"> </span><span class="crayon-v">$Computers</span></div></div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+ 
+<p>The simplest way is to manually type names of computers to generate 
+an array of text strings in a variable. That variable can then be passed
+ to cmdlets that accept an array of strings for the input of a 
+ComputerName variable.</p>
+<p></p> 
+<div id="crayon-5500d21bf3676066555692" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px ! important; line-height: 15px ! important; height: auto;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px ! important; height: 18px ! important; line-height: 18px ! important; margin-top: -19px; display: none; z-index: 4;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div style="display: none;" class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">PowerShell</span></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea class="crayon-plain print-no" data-settings="dblclick" readonly="readonly" style="-moz-tab-size: 4; font-size: 12px ! important; line-height: 15px ! important; z-index: 0; opacity: 0; overflow: hidden;" wrap="soft">$Computers | Out-File computers.txt</textarea></div>
+<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+<table style="" class="crayon-table">
+<tbody><tr class="crayon-row">
+<td class="crayon-nums " data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5500d21bf3676066555692-1">1</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5500d21bf3676066555692-1"><span class="crayon-v">$Computers</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-r ">Out-File</span><span class="crayon-h"> </span><span class="crayon-i">computers</span><span class="crayon-sy">.</span><span class="crayon-i">txt</span></div></div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+ 
+<p>If this same list of names might be useful in the future, one way to save the list permanently is to save it to a text file.</p>
+<p></p> 
+<div id="crayon-5500d21bf367f511404490" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px ! important; line-height: 15px ! important; height: auto;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px ! important; height: 18px ! important; line-height: 18px ! important; margin-top: -19px; display: none; z-index: 4;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div style="display: none;" class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">PowerShell</span></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea class="crayon-plain print-no" data-settings="dblclick" readonly="readonly" style="-moz-tab-size: 4; font-size: 12px ! important; line-height: 15px ! important; z-index: 0; opacity: 0; overflow: hidden;" wrap="soft">$Computers = Get-Content computers.txt</textarea></div>
+<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+<table style="" class="crayon-table">
+<tbody><tr class="crayon-row">
+<td class="crayon-nums " data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5500d21bf367f511404490-1">1</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5500d21bf367f511404490-1"><span class="crayon-v">$Computers</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r ">Get-Content</span><span class="crayon-h"> </span><span class="crayon-i">computers</span><span class="crayon-sy">.</span><span class="crayon-i">txt</span></div></div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+ 
+<p>When the list is needed again, the contents of the file can be read and stored to a variable.</p>
+<p></p> 
+<div id="crayon-5500d21bf3688890161028" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px ! important; line-height: 15px ! important; height: auto;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px ! important; height: 18px ! important; line-height: 18px ! important; margin-top: -19px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">PowerShell</span></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea class="crayon-plain print-no" data-settings="dblclick" readonly="readonly" style="-moz-tab-size: 4; font-size: 12px ! important; line-height: 15px ! important; z-index: 0; opacity: 0; overflow: hidden;" wrap="soft"># Load the Microsoft Active Directory Module
+Import-Module ActiveDirectory
+
+# Get a list of computers that have WIN7 in their name
+$Computers = Get-ADComputer -Filter "Name -like '*WIN7*'" | ForEach-Object {$_.Name}
+
+# Get a list of all computer names
+$Computers = Get-ADComputer -Filter * | ForEach-Object {$_.Name}
+
+# Get a list of fully qualified host names
+$Computers = Get-ADComputer -Filter * | ForEach-Object {$_.DNSHostName}</textarea></div>
+<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+<table style="" class="crayon-table">
+<tbody><tr class="crayon-row">
+<td class="crayon-nums " data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5500d21bf3688890161028-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5500d21bf3688890161028-2">2</div><div class="crayon-num" data-line="crayon-5500d21bf3688890161028-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5500d21bf3688890161028-4">4</div><div class="crayon-num" data-line="crayon-5500d21bf3688890161028-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5500d21bf3688890161028-6">6</div><div class="crayon-num" data-line="crayon-5500d21bf3688890161028-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5500d21bf3688890161028-8">8</div><div class="crayon-num" data-line="crayon-5500d21bf3688890161028-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5500d21bf3688890161028-10">10</div><div class="crayon-num" data-line="crayon-5500d21bf3688890161028-11">11</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5500d21bf3688890161028-1"><span class="crayon-c"># Load the Microsoft Active Directory Module</span></div><div class="crayon-line crayon-striped-line" id="crayon-5500d21bf3688890161028-2"><span class="crayon-r ">Import-Module</span><span class="crayon-h"> </span><span class="crayon-i">ActiveDirectory</span></div><div class="crayon-line" id="crayon-5500d21bf3688890161028-3">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5500d21bf3688890161028-4"><span class="crayon-c"># Get a list of computers that have WIN7 in their name</span></div><div class="crayon-line" id="crayon-5500d21bf3688890161028-5"><span class="crayon-v">$Computers</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r ">Get-ADComputer</span><span class="crayon-h"> </span><span class="crayon-cn">-Filter</span><span class="crayon-h"> </span><span class="crayon-s">"Name -like '*WIN7*'"</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-r ">ForEach-Object</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-v">$_</span><span class="crayon-sy">.</span><span class="crayon-i">Name</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-5500d21bf3688890161028-6">&nbsp;</div><div class="crayon-line" id="crayon-5500d21bf3688890161028-7"><span class="crayon-c"># Get a list of all computer names</span></div><div class="crayon-line crayon-striped-line" id="crayon-5500d21bf3688890161028-8"><span class="crayon-v">$Computers</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r ">Get-ADComputer</span><span class="crayon-h"> </span><span class="crayon-cn">-Filter</span><span class="crayon-h"> </span><span class="crayon-o">*</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-r ">ForEach-Object</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-v">$_</span><span class="crayon-sy">.</span><span class="crayon-i">Name</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5500d21bf3688890161028-9">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5500d21bf3688890161028-10"><span class="crayon-c"># Get a list of fully qualified host names</span></div><div class="crayon-line" id="crayon-5500d21bf3688890161028-11"><span class="crayon-v">$Computers</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r ">Get-ADComputer</span><span class="crayon-h"> </span><span class="crayon-cn">-Filter</span><span class="crayon-h"> </span><span class="crayon-o">*</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-r ">ForEach-Object</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-v">$_</span><span class="crayon-sy">.</span><span class="crayon-i">DNSHostName</span><span class="crayon-sy">}</span></div></div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+ 
+<p>When there’s more than a few computers to deal with, it’s much easier
+ to get those names from the computer accounts in Active Directory. In a
+ correctly configured domain environment, the <a href="http://technet.microsoft.com/en-us/library/dd378937%28v=ws.10%29.aspx" title="Active Directory Administration with Windows PowerShell" target="_blank">Microsoft Active Directory cmdlets</a> can be used to generate lists of computers.</p>
+<p></p> 
+<div id="crayon-5500d21bf3692243035983" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px ! important; line-height: 15px ! important; height: auto;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px ! important; height: 18px ! important; line-height: 18px ! important; margin-top: -19px; display: none; position: absolute; z-index: 2;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">PowerShell</span></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea class="crayon-plain print-no" data-settings="dblclick" readonly="readonly" style="-moz-tab-size: 4; font-size: 12px ! important; line-height: 15px ! important; z-index: 0; opacity: 0; overflow: hidden;" wrap="soft"># Load the Quest Active Directory cmdlets
+Add-PSSnapin Quest.ActiveRoles.ADManagement
+
+# Get a list of computers running the Windows Server 2008 operating system
+$Computers = Get-QADComputer -OSName "Windows Server 2008*" | ForEach-Object {$_.Name}
+
+# Get a list of computers that are members of the Database Servers group
+$Computers = Get-QADComputer -MemberOf 'Database Servers' | ForEach-Object {$_.Name}
+
+# Get a list of computers that are located in the Domain Controllers OU
+$Computers = Get-QADComputer -SearchRoot "testlab.local/Domain Controllers" | ForEach-Object {$_.Name}</textarea></div>
+<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+<table style="" class="crayon-table">
+<tbody><tr class="crayon-row">
+<td class="crayon-nums " data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5500d21bf3692243035983-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5500d21bf3692243035983-2">2</div><div class="crayon-num" data-line="crayon-5500d21bf3692243035983-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5500d21bf3692243035983-4">4</div><div class="crayon-num" data-line="crayon-5500d21bf3692243035983-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5500d21bf3692243035983-6">6</div><div class="crayon-num" data-line="crayon-5500d21bf3692243035983-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5500d21bf3692243035983-8">8</div><div class="crayon-num" data-line="crayon-5500d21bf3692243035983-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5500d21bf3692243035983-10">10</div><div class="crayon-num" data-line="crayon-5500d21bf3692243035983-11">11</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5500d21bf3692243035983-1"><span class="crayon-c"># Load the Quest Active Directory cmdlets</span></div><div class="crayon-line crayon-striped-line" id="crayon-5500d21bf3692243035983-2"><span class="crayon-r ">Add-PSSnapin</span><span class="crayon-h"> </span><span class="crayon-i">Quest</span><span class="crayon-sy">.</span><span class="crayon-i">ActiveRoles</span><span class="crayon-sy">.</span><span class="crayon-i">ADManagement</span></div><div class="crayon-line" id="crayon-5500d21bf3692243035983-3">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5500d21bf3692243035983-4"><span class="crayon-c"># Get a list of computers running the Windows Server 2008 operating system</span></div><div class="crayon-line" id="crayon-5500d21bf3692243035983-5"><span class="crayon-v">$Computers</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r ">Get-QADComputer</span><span class="crayon-h"> </span><span class="crayon-cn">-OSName</span><span class="crayon-h"> </span><span class="crayon-s">"Windows Server 2008*"</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-r ">ForEach-Object</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-v">$_</span><span class="crayon-sy">.</span><span class="crayon-i">Name</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-5500d21bf3692243035983-6">&nbsp;</div><div class="crayon-line" id="crayon-5500d21bf3692243035983-7"><span class="crayon-c"># Get a list of computers that are members of the Database Servers group</span></div><div class="crayon-line crayon-striped-line" id="crayon-5500d21bf3692243035983-8"><span class="crayon-v">$Computers</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r ">Get-QADComputer</span><span class="crayon-h"> </span><span class="crayon-cn">-MemberOf</span><span class="crayon-h"> </span><span class="crayon-s">'Database Servers'</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-r ">ForEach-Object</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-v">$_</span><span class="crayon-sy">.</span><span class="crayon-i">Name</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5500d21bf3692243035983-9">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5500d21bf3692243035983-10"><span class="crayon-c"># Get a list of computers that are located in the Domain Controllers OU</span></div><div class="crayon-line" id="crayon-5500d21bf3692243035983-11"><span class="crayon-v">$Computers</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r ">Get-QADComputer</span><span class="crayon-h"> </span><span class="crayon-cn">-SearchRoot</span><span class="crayon-h"> </span><span class="crayon-s">"testlab.local/Domain Controllers"</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-r ">ForEach-Object</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-v">$_</span><span class="crayon-sy">.</span><span class="crayon-i">Name</span><span class="crayon-sy">}</span></div></div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+ 
+<p>Not everyone has the infrastructure in place to use the Microsoft cmdlets. Fortunately, Quest has <a href="http://www.quest.com/powershell/activeroles-server.aspx" title="ActiveRoles Management Shell for Active Directory" target="_blank">freely available</a> cmdlets for interacting with Active Directory.</p>
+<p></p> 
+<div id="crayon-5500d21bf369c581422006" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px ! important; line-height: 15px ! important; height: auto;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px ! important; height: 18px ! important; line-height: 18px ! important; margin-top: -19px; display: none; z-index: 4;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div style="display: none;" class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">PowerShell</span></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea class="crayon-plain print-no" data-settings="dblclick" readonly="readonly" style="-moz-tab-size: 4; font-size: 12px ! important; line-height: 15px ! important; z-index: 0; opacity: 0; overflow: hidden;" wrap="soft">Get-ADComputer -Filter * | Export-Csv computerList.csv -NoTypeInformation
+Get-QADComputer | Export-Csv computerList.csv -NoTypeInformation</textarea></div>
+<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+<table style="" class="crayon-table">
+<tbody><tr class="crayon-row">
+<td class="crayon-nums " data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5500d21bf369c581422006-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5500d21bf369c581422006-2">2</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5500d21bf369c581422006-1"><span class="crayon-r ">Get-ADComputer</span><span class="crayon-h"> </span><span class="crayon-cn">-Filter</span><span class="crayon-h"> </span><span class="crayon-o">*</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-r ">Export-Csv</span><span class="crayon-h"> </span><span class="crayon-i">computerList</span><span class="crayon-sy">.</span><span class="crayon-i">csv</span><span class="crayon-h"> </span><span class="crayon-cn">-NoTypeInformation</span></div><div class="crayon-line crayon-striped-line" id="crayon-5500d21bf369c581422006-2"><span class="crayon-r ">Get-QADComputer</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-r ">Export-Csv</span><span class="crayon-h"> </span><span class="crayon-i">computerList</span><span class="crayon-sy">.</span><span class="crayon-i">csv</span><span class="crayon-h"> </span><span class="crayon-cn">-NoTypeInformation</span></div></div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+ 
+<p>Sometimes it’s difficult to filter a list of names using these 
+cmdlets. Another option is to export all the computer account properties
+ to a Comma Separated Values file, and then use Excel to filter the 
+list.</p>
+<p></p> 
+<div id="crayon-5500d21bf36a5391888041" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px ! important; line-height: 15px ! important; height: auto;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px ! important; height: 18px ! important; line-height: 18px ! important; margin-top: -19px; display: none; z-index: 4;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div style="display: none;" class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">PowerShell</span></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea class="crayon-plain print-no" data-settings="dblclick" readonly="readonly" style="-moz-tab-size: 4; font-size: 12px ! important; line-height: 15px ! important; z-index: 0; opacity: 0; overflow: hidden;" wrap="soft">$Computers = Import-Csv -Path computerList.csv | ForEach-Object {$_.Name}</textarea></div>
+<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+<table style="" class="crayon-table">
+<tbody><tr class="crayon-row">
+<td class="crayon-nums " data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5500d21bf36a5391888041-1">1</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5500d21bf36a5391888041-1"><span class="crayon-v">$Computers</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r ">Import-Csv</span><span class="crayon-h"> </span><span class="crayon-cn">-Path</span><span class="crayon-h"> </span><span class="crayon-i">computerList</span><span class="crayon-sy">.</span><span class="crayon-i">csv</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-r ">ForEach-Object</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-v">$_</span><span class="crayon-sy">.</span><span class="crayon-i">Name</span><span class="crayon-sy">}</span></div></div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+ 
+<p>When the spreadsheet has been narrowed down to the required names, it
+ can then be imported back into PowerShell to get the array of computer 
+names.</p>
+<p>The capability of PowerShell to import Csv files is also useful when a
+ list of computers is provided in an Excel spreadsheet from another IT 
+department. It’s common for reporting software to generate spreadsheets 
+of computer names along with all kinds of other data. By saving these 
+Excel spreadsheets as Csv files, they can easily be imported directly 
+into PowerShell.</p>
+<p><a href="http://www.hofferle.com/wordpress/wp-content/uploads/2012/03/Excel_ComputerList.png"><img src="Generating%20Lists%20of%20Computer%20Names%20with%20PowerShell_files/Excel_ComputerList.png" alt="Excel Computer List" title="Excel_ComputerList" class="alignnone size-full wp-image-1344" height="551" width="640"></a></p>
+<p><a href="http://www.hofferle.com/wordpress/wp-content/uploads/2012/03/Excel_SaveAsCsv.png"><img src="Generating%20Lists%20of%20Computer%20Names%20with%20PowerShell_files/Excel_SaveAsCsv.png" alt="Excel Save as Csv" title="Excel_SaveAsCsv" class="alignnone size-full wp-image-1345" height="472" width="640"></a></p>
+<p></p> 
+<div id="crayon-5500d21bf36b0693791671" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px ! important; line-height: 15px ! important; height: auto;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px ! important; height: 18px ! important; line-height: 18px ! important; margin-top: -19px; display: none; z-index: 4;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">PowerShell</span></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea class="crayon-plain print-no" data-settings="dblclick" readonly="readonly" style="-moz-tab-size: 4; font-size: 12px ! important; line-height: 15px ! important; z-index: 0; opacity: 0; overflow: hidden;" wrap="soft">$Computers = Import-Csv -Path Computers.csv | Foreach-Object {$_.NetBIOSName.Trim()}</textarea></div>
+<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+<table style="" class="crayon-table">
+<tbody><tr class="crayon-row">
+<td class="crayon-nums " data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5500d21bf36b0693791671-1">1</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5500d21bf36b0693791671-1"><span class="crayon-v">$Computers</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r ">Import-Csv</span><span class="crayon-h"> </span><span class="crayon-cn">-Path</span><span class="crayon-h"> </span><span class="crayon-i">Computers</span><span class="crayon-sy">.</span><span class="crayon-i">csv</span><span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-r ">Foreach-Object</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-v">$_</span><span class="crayon-sy">.</span><span class="crayon-i">NetBIOSName</span><span class="crayon-sy">.</span><span class="crayon-e">Trim</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">}</span></div></div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+ 
+<p>Sometimes spreadsheets generated by reporting software will include 
+spaces around the cell data. If computer names have spaces around them, 
+cmdlets like Invoke-Command will not accept those names as input. One 
+way to clean up the computer names is to use string methods like Trim.</p>
+<p></p> 
+<div id="crayon-5500d21bf36b9925508371" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px ! important; line-height: 15px ! important; height: auto;">
+<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px ! important; height: 18px ! important; line-height: 18px ! important; margin-top: -19px; display: none; z-index: 4;"><span class="crayon-title"></span>
+<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div style="display: none;" class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">PowerShell</span></div></div>
+<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+<div class="crayon-plain-wrap"><textarea class="crayon-plain print-no" data-settings="dblclick" readonly="readonly" style="-moz-tab-size: 4; font-size: 12px ! important; line-height: 15px ! important; z-index: 0; opacity: 0; overflow: hidden;" wrap="soft">$Computers = 1..254 | ForEach-Object {"192.168.1.$_"}</textarea></div>
+<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+<table style="" class="crayon-table">
+<tbody><tr class="crayon-row">
+<td class="crayon-nums " data-settings="show">
+<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5500d21bf36b9925508371-1">1</div></div>
+</td>
+<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5500d21bf36b9925508371-1"><span class="crayon-v">$Computers</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span>1<span class="crayon-sy">.</span><span class="crayon-sy">.</span>254<span class="crayon-h"> </span><span class="crayon-o">|</span><span class="crayon-h"> </span><span class="crayon-r ">ForEach-Object</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-s">"192.168.1.$_"</span><span class="crayon-sy">}</span></div></div></td>
+</tr>
+</tbody></table>
+</div>
+</div>
+ 
+<p>In certain situations, IP addresses can be used instead of computer 
+names. This is helpful when actions need to be run on all computers on a
+ subnet, regardless of their names.</p>
+<p>Just like anything in PowerShell, there are lots of different ways to
+ accomplish a task. These are just a few ways to generate a list of 
+computers, which can then be used with any number of scripts and 
+functions.</p>
+</div><div class="post-meta"><span class="categories">Filed Under: <a href="http://www.hofferle.com/category/powershell/" rel="category tag">PowerShell</a></span> <span class="tags">Tagged With: <a href="http://www.hofferle.com/tag/active-directory/" rel="tag">Active Directory</a>, <a href="http://www.hofferle.com/tag/powershell/" rel="tag">PowerShell</a></span></div></div> </div><div id="sidebar" class="sidebar widget-area"><div id="socialprofiles-2" class="widget social-profiles"><div class="widget-wrap"><a href="http://feeds.feedburner.com/ForceMultiplicationThroughItAutomation" target="_blank"><img src="Generating%20Lists%20of%20Computer%20Names%20with%20PowerShell_files/Feed_48x48.png" alt="RSS"></a><a href="https://twitter.com/jhofferle" target="_blank"><img src="Generating%20Lists%20of%20Computer%20Names%20with%20PowerShell_files/Twitter_48x48.png" alt="Twitter"></a><a href="http://www.linkedin.com/in/jhofferle" target="_blank"><img src="Generating%20Lists%20of%20Computer%20Names%20with%20PowerShell_files/Linkedin_48x48.png" alt="Linkedin"></a></div></div>
+<div id="search-3" class="widget widget_search"><div class="widget-wrap"><form method="get" class="searchform search-form" action="http://www.hofferle.com/" role="search"><input value="Search this website…" name="s" class="s search-input" onfocus="if ('Search this website…' === this.value) {this.value = '';}" onblur="if ('' === this.value) {this.value = 'Search this website…';}" type="text"><input class="searchsubmit search-submit" value="Search" type="submit"></form></div></div>
+<div id="tag_cloud-4" class="widget widget_tag_cloud"><div class="widget-wrap"><h4 class="widget-title widgettitle">Tags</h4>
+<div class="tagcloud"><a href="http://www.hofferle.com/tag/active-directory/" class="tag-link-8" title="9 topics" style="font-size: 15.1014492754pt;">Active Directory</a>
+<a href="http://www.hofferle.com/tag/books/" class="tag-link-22" title="1 topic" style="font-size: 8pt;">Books</a>
+<a href="http://www.hofferle.com/tag/desired-state-configuration/" class="tag-link-27" title="1 topic" style="font-size: 8pt;">Desired State Configuration</a>
+<a href="http://www.hofferle.com/tag/ebook/" class="tag-link-17" title="1 topic" style="font-size: 8pt;">eBook</a>
+<a href="http://www.hofferle.com/tag/email/" class="tag-link-10" title="1 topic" style="font-size: 8pt;">email</a>
+<a href="http://www.hofferle.com/tag/google/" class="tag-link-5" title="3 topics" style="font-size: 11.0434782609pt;">Google</a>
+<a href="http://www.hofferle.com/tag/it-pro-camp/" class="tag-link-20" title="7 topics" style="font-size: 14.0869565217pt;">IT Pro Camp</a>
+<a href="http://www.hofferle.com/tag/powershell/" class="tag-link-3" title="47 topics" style="font-size: 22pt;">PowerShell</a>
+<a href="http://www.hofferle.com/tag/powershell-summit/" class="tag-link-26" title="1 topic" style="font-size: 8pt;">PowerShell Summit</a>
+<a href="http://www.hofferle.com/tag/registry/" class="tag-link-9" title="6 topics" style="font-size: 13.5797101449pt;">registry</a>
+<a href="http://www.hofferle.com/tag/remoting/" class="tag-link-15" title="6 topics" style="font-size: 13.5797101449pt;">Remoting</a>
+<a href="http://www.hofferle.com/tag/scripting-games/" class="tag-link-11" title="4 topics" style="font-size: 12.0579710145pt;">Scripting Games</a>
+<a href="http://www.hofferle.com/tag/sql-saturday/" class="tag-link-24" title="4 topics" style="font-size: 12.0579710145pt;">SQL Saturday</a>
+<a href="http://www.hofferle.com/tag/vbscript/" class="tag-link-4" title="13 topics" style="font-size: 16.6231884058pt;">VBScript</a>
+<a href="http://www.hofferle.com/tag/vmware/" class="tag-link-21" title="1 topic" style="font-size: 8pt;">VMware</a>
+<a href="http://www.hofferle.com/tag/windows-8/" class="tag-link-19" title="1 topic" style="font-size: 8pt;">Windows 8</a>
+<a href="http://www.hofferle.com/tag/wmi/" class="tag-link-6" title="8 topics" style="font-size: 14.5942028986pt;">WMI</a></div>
+</div></div>
+<div id="linkcat-2" class="widget widget_links"><div class="widget-wrap"><h4 class="widget-title widgettitle">Blogroll</h4>
+<ul class="xoxo blogroll">
+<li><a href="http://csharpening.net/" title="Adam Driscoll’s Blog" target="_blank">Adam Driscoll's Blog</a></li>
+<li><a href="http://sqlblog.com/blogs/allen_white/" title="Allen White’s blog at SQLblog.com" target="_blank">Allen White</a></li>
+<li><a href="http://blogs.technet.com/b/ashleymcglone/" title="Blog of Microsoft Premier Field Engineer Ashley McGlone featuring PowerShell scripts for Active Directory." target="_blank">Goatee PFE</a></li>
+<li><a href="http://blogs.technet.com/b/heyscriptingguy/" title="Microsoft’s Scripting Guy! Blog" target="_blank">Hey, Scripting Guy! Blog</a></li>
+<li><a href="http://huddledmasses.org/" title="You can do more than breathe for free…" target="_blank">Huddled Masses</a></li>
+<li><a href="http://learn-powershell.net/" title="The PowerShell blog of Boe Prox" target="_blank">Learn Powershell | Achieve More</a></li>
+<li><a href="http://mikefrobbins.com/" title="Mike F Robbins’ blog" target="_blank">Mike F Robbins</a></li>
+<li><a href="http://powershell.org/wp/powerscripting-podcast/" title="Shownotes and links for the PowerScripting Podcast, a podcast to help people learn Windows Powershell" target="_blank">PowerScripting Podcast</a></li>
+<li><a href="http://jdhitsolutions.com/blog/" title="Jeff Hicks’ Blog" target="_blank">The Lonely Administrator</a></li>
+<li><a href="http://www.virtu-al.net/" title="Virtually everything is POSHable" target="_blank">Virtu-Al.Net</a></li>
+<li><a href="http://blogs.msdn.com/b/powershell/" title="Team blog for Windows PowerShell" target="_blank">Windows PowerShell Blog</a></li>
+</ul>
+</div></div>
+<div id="linkcat-14" class="widget widget_links"><div class="widget-wrap"><h4 class="widget-title widgettitle">Communities</h4>
+<ul class="xoxo blogroll">
+<li><a href="http://www.powershellmagazine.com/" title="PowerShell Magazine" target="_blank">PowerShell Magazine</a></li>
+<li><a href="http://powershell.com/cs/" title="PowerShell Scripts, Tips, Expert Advice &amp; Training, Forums, and Resources" target="_blank">PowerShell.com</a></li>
+<li><a href="http://powershell.org/" title="PowerShell.org is a community-owned and operated corporation dedicated to helping IT professionals and developers master Windows PowerShell" target="_blank">PowerShell.org</a></li>
+<li><a href="http://social.technet.microsoft.com/Forums/en/ITCG/threads/" title="The Official Scripting Guys Forum!" target="_blank">The Official Scripting Guys Forum!</a></li>
+<li><a href="http://social.technet.microsoft.com/Forums/en/winserverpowershell/" title="Discussion on Windows Server Windows Powershell" target="_blank">Windows PowerShell Forum</a></li>
+</ul>
+</div></div>
+<div id="linkcat-18" class="widget widget_links"><div class="widget-wrap"><h4 class="widget-title widgettitle">Script Libraries</h4>
+<ul class="xoxo blogroll">
+<li><a href="http://poshcode.org/" title="Repository of PowerShell scripts that are free for public use." target="_blank">PowerShell Code Repository</a></li>
+<li><a href="https://github.com/PowerShellOrg/DSC" title="PowerShell.org on Github" target="_blank">PowerShell.org Github</a></li>
+<li><a href="http://gallery.technet.microsoft.com/scriptcenter" title="Microsoft TechNet Script Center Repository" target="_blank">TechNet Script Center Repository</a></li>
+</ul>
+</div></div>
+</div></div></div></div><div id="footer" class="footer"><div class="wrap"><div class="gototop"><p><a href="#wrap" rel="nofollow">Return to top of page</a></p></div><div class="creds"><p>Copyright ©&nbsp;2015 ·<a href="http://www.studiopress.com/themes/prose">Prose Theme</a> · <a href="http://my.studiopress.com/themes/genesis">Genesis Framework</a> by <a href="http://www.studiopress.com/">StudioPress</a> · <a href="http://wordpress.org/">WordPress</a> · <a href="https://www.hofferle.com/wordpress/wp-login.php">Log in</a></p></div></div></div>
+
+</body></html>
