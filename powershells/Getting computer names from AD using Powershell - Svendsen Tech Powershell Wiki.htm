@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<title>Getting computer names from AD using Powershell - Svendsen Tech Powershell Wiki</title>
+<meta charset="UTF-8" />
+<meta name="generator" content="MediaWiki 1.19.14+dfsg-1" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/w/opensearch_desc.php" title="Svendsen Tech Powershell Wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="http://www.powershelladmin.com/w/api.php?action=rsd" />
+<link rel="alternate" type="application/atom+xml" title="Svendsen Tech Powershell Wiki Atom feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="http://www.powershelladmin.com/w/load.php?debug=false&amp;lang=en&amp;modules=mediawiki.legacy.commonPrint%2Cshared%7Cskins.monobook&amp;only=styles&amp;skin=monobook&amp;*" />
+<!--[if IE 6]><link rel="stylesheet" href="/w/skins/monobook/IE60Fixes.css?303" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/w/skins/monobook/IE70Fixes.css?303" media="screen" /><![endif]--><meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="http://www.powershelladmin.com/w/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=monobook&amp;*" />
+<style>a:lang(ar),a:lang(ckb),a:lang(fa),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}a.new,#quickbar a.new{color:#ba0000}
+
+/* cache key: wikidb-mw_:resourceloader:filter:minify-css:7:c88e2bcd56513749bec09a7e29cb3ffa */
+</style>
+
+<script src="http://www.powershelladmin.com/w/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=monobook&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Getting_computer_names_from_AD_using_Powershell","wgTitle":"Getting computer names from AD using Powershell","wgCurRevisionId":2514,"wgArticleId":23,"wgIsArticle":true,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Powershell","Windows","AD"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgRelevantPageName":"Getting_computer_names_from_AD_using_Powershell","wgRestrictionEdit":[],"wgRestrictionMove":[]});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($){mw.user.options.set({"ccmeonemails":0,"cols":80,"date":"default","diffonly":0,"disablemail":0,"disablesuggest":0,"editfont":"default","editondblclick":0,"editsection":1,"editsectiononrightclick":0,"enotifminoredits":0,"enotifrevealaddr":0,"enotifusertalkpages":1,"enotifwatchlistpages":0,"extendwatchlist":0,"externaldiff":0,"externaleditor":0,"fancysig":0,"forceeditsummary":0,"gender":"unknown","hideminor":0,"hidepatrolled":0,"highlightbroken":1,"imagesize":2,"justify":0,"math":1,"minordefault":0,"newpageshidepatrolled":0,"nocache":0,"noconvertlink":0,"norollbackdiff":0,"numberheadings":0,"previewonfirst":0,"previewontop":1,"quickbar":5,"rcdays":7,"rclimit":50,"rememberpassword":0,"rows":25,"searchlimit":20,"showhiddencats":0,"showjumplinks":1,"shownumberswatching":1,"showtoc":1,"showtoolbar":1,"skin":"monobook","stubthreshold":0,"thumbsize":2,"underline":2,"uselivepreview":0,"usenewrc":0,"watchcreations":0,"watchdefault":0,"watchdeletion":
+0,"watchlistdays":3,"watchlisthideanons":0,"watchlisthidebots":0,"watchlisthideliu":0,"watchlisthideminor":0,"watchlisthideown":0,"watchlisthidepatrolled":0,"watchmoves":0,"wllimit":250,"variant":"en","language":"en","searchNs0":true,"searchNs1":false,"searchNs2":false,"searchNs3":false,"searchNs4":false,"searchNs5":false,"searchNs6":false,"searchNs7":false,"searchNs8":false,"searchNs9":false,"searchNs10":false,"searchNs11":false,"searchNs12":false,"searchNs13":false,"searchNs14":false,"searchNs15":false});;},{},{});mw.loader.implement("user.tokens",function($){mw.user.tokens.set({"editToken":"+\\","watchToken":false});;},{},{});
+
+/* cache key: wikidb-mw_:resourceloader:filter:minify-js:7:74a832f2292f1f4d40d425d223444e78 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax"]);
+}</script>
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Getting_computer_names_from_AD_using_Powershell skin-monobook action-view">
+<div id="globalWrapper">
+<div id="column-content"><div id="content">
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading"><span dir="auto">Getting computer names from AD using Powershell</span></h1>
+	<div id="bodyContent" class="mw-body">
+		<div id="siteSub">From Svendsen Tech Powershell Wiki</div>
+		<div id="contentSub"></div>
+		<div id="jump-to-nav" class="mw-jump">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+		<!-- start content -->
+<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><p>Often as a Windows system administrator, you will want to get a list of computer/host names from (an OU in) Active Directory. Here are a few ways of doing it with PowerShell, using System.DirectoryServices.DirectorySearcher ([adsisearcher]) with an LDAP query, Get-ADComputer from the Microsoft ActiveDirectory module cmdlets and Get-QADComputer from <a href="/wiki/Quest_activeroles" title="Quest activeroles">Quest ActiveRoles</a>.
+</p><p>These MS AD cmdlets that Get-ADComputer and Get-ADObject are part of are installed as a feature under the category "Remote Server Administration Tools" (RSAT) from Server Manager on Windows Server 2008 R2 and can be downloaded for Windows 7. There's more information about this <a rel="nofollow" class="external text" href="http://technet.microsoft.com/en-us/library/ee617195.aspx">here</a> and <a rel="nofollow" class="external text" href="http://technet.microsoft.com/en-us/library/dd378937%28WS.10%29.aspx">here</a>.
+</p><p>See <a href="/wiki/Getting_usernames_from_active_directory_with_powershell" title="Getting usernames from active directory with powershell">this article for getting usernames</a>.
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Using_Get-ADComputer"><span class="tocnumber">1</span> <span class="toctext">Using Get-ADComputer</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Getting_Just_The_Host_Name"><span class="tocnumber">1.1</span> <span class="toctext">Getting Just The Host Name</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Getting_Server_Or_Client_Operating_Systems_Only"><span class="tocnumber">1.2</span> <span class="toctext">Getting Server Or Client Operating Systems Only</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Getting_Service_Pack_Version"><span class="tocnumber">1.3</span> <span class="toctext">Getting Service Pack Version</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Targeting_A_Specific_OU"><span class="tocnumber">1.4</span> <span class="toctext">Targeting A Specific OU</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Using_An_LDAP_Query"><span class="tocnumber">1.5</span> <span class="toctext">Using An LDAP Query</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Using_An_LDAP_Query_And_Get-ADObject"><span class="tocnumber">1.6</span> <span class="toctext">Using An LDAP Query And Get-ADObject</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Filtering_Using_Wildcards_And_Where-Object"><span class="tocnumber">1.7</span> <span class="toctext">Filtering Using Wildcards And Where-Object</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#Using_DirectorySearcher.2FAdsiSearcher"><span class="tocnumber">2</span> <span class="toctext">Using DirectorySearcher/AdsiSearcher</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#Targeting_A_Specific_OU_With_ADSI.2FLDAP.2FDirectorySearcher"><span class="tocnumber">2.1</span> <span class="toctext">Targeting A Specific OU With ADSI/LDAP/DirectorySearcher</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="#Parsing_dsquery.exe_Output"><span class="tocnumber">3</span> <span class="toctext">Parsing dsquery.exe Output</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#Using_Quest_ActiveRoles_Get-QADComputer"><span class="tocnumber">4</span> <span class="toctext">Using Quest ActiveRoles Get-QADComputer</span></a>
+<ul>
+<li class="toclevel-2 tocsection-13"><a href="#Random_Get-QADComputer_Sample"><span class="tocnumber">4.1</span> <span class="toctext">Random Get-QADComputer Sample</span></a>
+<ul>
+<li class="toclevel-3 tocsection-14"><a href="#Download"><span class="tocnumber">4.1.1</span> <span class="toctext">Download</span></a></li>
+<li class="toclevel-3 tocsection-15"><a href="#Sample_Output"><span class="tocnumber">4.1.2</span> <span class="toctext">Sample Output</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#Getting_Just_The_Computer_Names_From_That_Output"><span class="tocnumber">4.1.3</span> <span class="toctext">Getting Just The Computer Names From That Output</span></a>
+<ul>
+<li class="toclevel-4 tocsection-17"><a href="#Using_Split"><span class="tocnumber">4.1.3.1</span> <span class="toctext">Using Split</span></a></li>
+<li class="toclevel-4 tocsection-18"><a href="#Using_A_Regular_Expression"><span class="tocnumber">4.1.3.2</span> <span class="toctext">Using A Regular Expression</span></a></li>
+</ul>
+</li>
+<li class="toclevel-3 tocsection-19"><a href="#Script_Code"><span class="tocnumber">4.1.4</span> <span class="toctext">Script Code</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</td></tr></table>
+<p><br />
+</p><p><br />
+<!-- AddThis Button BEGIN -->
+</p>
+<div class="addthis_toolbox addthis_default_style ">
+<p><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+<a class="addthis_button_tweet"></a>
+<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+<a class="addthis_counter addthis_pill_style"></a>
+</p>
+</div>
+<p><script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f862153204714db"></script>
+<!-- AddThis Button END -->
+</p><p><br />
+</p><p><br />
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="UJLAZ7LWYNJVU">
+<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</p><p><br />
+</p>
+<h2> <span class="mw-headline" id="Using_Get-ADComputer"> Using Get-ADComputer </span></h2>
+<p>Firstly, unless you're on PSv3 or later (autoloads modules when you use cmdlets), you need to import the ActiveDirectory module after having installed it as a feature (under RSAT in Server Manager -&gt; Features -&gt; Add feature -&gt; Remote Server Administration Tools):
+</p>
+<pre>
+PS C:\prog\PowerShell&gt; Import-Module ActiveDirectory
+PS C:\prog\PowerShell&gt;
+</pre>
+<p><br />
+</p><p><script type="text/javascript"><!--
+google_ad_client = "ca-pub-5203802095278960";
+/* Main ad */
+google_ad_slot = "5585484876";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</p><p><br />
+Also, don't forget to look at <b>Get-Help Get-ADComputer -Full</b>!
+</p><p>To just dump every single computer in a domain, and possibly redirect to a file by adding " &gt; computers.txt", you can do it like this:
+</p>
+<pre>
+PS C:\prog\PowerShell&gt; Get-ADComputer -Filter 'ObjectClass -eq &quot;Computer&quot;' | Select -Expand DNSHostName
+2008R2ESXI2.svendsen.local
+2008r2esxi.svendsen.local
+srv2003r2esxi.svendsen.local
+siemens.svendsen.local
+WIN7ESXI.svendsen.local
+winxpesxi.svendsen.local
+win2k.svendsen.local
+vista64esxi.svendsen.local
+server2003.svendsen.local
+xptanket.svendsen.local
+SERVER2008.svendsen.local
+esxi.svendsen.local
+winxpssd.svendsen.local
+</pre>
+<p>Technically, that filter is (bloody well should be) redundant. You can also use -like instead of -eq. I'm having some trouble with wildcards in combination with text, though (such as in 'ObjectClass -like "*ompute*"').
+</p><p>You can also redirect to a file, and specify encoding, by piping to Set-Content rather than using the redirection operator "&gt;", which does the same thing as Out-File (Out-File allows you to specify -Encoding). When working with text/strings, they will work equivalently, and since we're using Select-Object with the parameter -ExpandProperty ("-Exp" in the examples), we get strings. There's a lot more to be said about this, but it does not belong in this article.
+</p>
+<h3> <span class="mw-headline" id="Getting_Just_The_Host_Name"> Getting Just The Host Name </span></h3>
+<p>Above I selected the property "DNSHostName". If you use the property "Name" instead, you will get just the host name:
+</p>
+<pre>
+PS C:\prog\PowerShell&gt; Get-ADComputer -Filter * | Select -Expand Name
+2008R2ESXI2
+2008R2ESXI
+SRV2003R2ESXI
+SIEMENS
+WIN7ESXI
+WINXPESXI
+WIN2K
+VISTA64ESXI
+SERVER2003
+XPTANKET
+SERVER2008
+esxi
+WINXPSSD
+</pre>
+<p>I also used a different filter here. Basically, when you use the Get-ADComputer cmdlet, there should be built-in filtering that targets computer objects, so you can use any property and a wildcard match with "-like '*'" or similar. I experimented with just a wildcard ("*") to target anything, and it seems to work as intended.
+</p>
+<h3> <span class="mw-headline" id="Getting_Server_Or_Client_Operating_Systems_Only"> Getting Server Or Client Operating Systems Only </span></h3>
+<p>To get server operating systems only, I currently don't know of any (much) better way than filtering on the "OperatingSystem" text containing "Windows Server". You can also use a script block for the filter, which helps avoid nested quoting, and can be done like this:
+</p>
+<pre>
+
+PS C:\&gt; Get-ADComputer -Filter { OperatingSystem -Like '*Windows Server*' } -Properties OperatingSystem | 
+&gt;&gt; Select Name, OperatingSystem | Format-Table -AutoSize
+&gt;&gt;
+
+Name          OperatingSystem
+----          ---------------
+2008R2ESXI2   Windows Server 2008 R2 Standard
+2008R2ESXI    Windows Server 2008 R2 Standard
+SRV2003R2ESXI Windows Server 2003
+SERVER2003    Windows Server 2003
+SERVER2008    Windows Serverr 2008 Standard
+SERVER2012RC  Windows Server 2012 Release Candidate Datacenter
+
+PS C:\&gt;
+</pre>
+<p>As we can see, this works for Server 2003 through Server 2012 versions of Windows Server operating systems.
+</p><p>To do the opposite, and only get client operating systems, you can use -NotLike instead of -Like. If you're in an environment with AD-joined Linux computers, NAS, etc., you will also see these here.
+</p>
+<pre>
+PS C:\&gt; Get-ADComputer -Filter { OperatingSystem -NotLike '*Windows Server*' } -Properties OperatingSystem | 
+&gt;&gt; Select Name, OperatingSystem | Format-Table -AutoSize
+&gt;&gt;
+
+Name        OperatingSystem
+----        ---------------
+SIEMENS     Windows XP Professional
+WIN7ESXI    Windows 7 Professional
+WINXPESXI   Windows XP Professional
+WIN2K       Windows 2000 Professional
+VISTA64ESXI Windows VistaT Ultimate
+XPTANKET    Windows XP Professional
+esxi        unknown
+WINXPSSD    Windows XP Professional
+VMWAREWIN7  Windows 7 Professional
+SS-WIN7     Windows 7 Professional
+WIN8VM      Windows 8 Pro
+
+PS C:\&gt;
+</pre>
+<h3> <span class="mw-headline" id="Getting_Service_Pack_Version"> Getting Service Pack Version </span></h3>
+<p>With Quest ActiveRoles' Get-QADComputer, the property is named "OSServicePack", while with Get-ADComputer from Microsoft, it's named "OperatingSystemServicePack".
+</p>
+<pre>
+PS C:\&gt; Get-ADComputer -Filter 'name -eq &quot;2008r2esxi&quot;' -Properties OperatingSystemServicePack
+   | select Name, OperatingSystemServicePack | ft -AutoSize
+
+Name       OperatingSystemServicePack
+----       --------------------------
+2008R2ESXI Service Pack 1
+</pre>
+<h3> <span class="mw-headline" id="Targeting_A_Specific_OU"> Targeting A Specific OU </span></h3>
+<p>Here I target the OU "svendsen.local/Hjemme/Clients" using the -SearchBase parameter and the LDAP distinguished name for this OU.
+</p>
+<pre>
+PS C:\&gt; Get-ADComputer -SearchBase 'OU=Clients,OU=Hjemme,dc=svendsen,dc=local' -Filter '*' | Select -Exp Name
+XPTANKET
+WINXPSSD
+SIEMENS
+WIN7ESXI
+WINXPESXI
+WIN2K
+VISTA64ESXI
+</pre>
+<p>This OU:
+</p><p><a href="/wiki/File:Get-computers-from-ad-ad-screenshot.png" class="image"><img alt="Get-computers-from-ad-ad-screenshot.png" src="/w/images/e/e4/Get-computers-from-ad-ad-screenshot.png" width="200" height="178" /></a>
+</p>
+<h3> <span class="mw-headline" id="Using_An_LDAP_Query"> Using An LDAP Query </span></h3>
+<p>Using an LDAP query effectively similar to the filter in the first example, you can do something like this:
+</p>
+<pre>
+PS C:\prog\PowerShell&gt; Get-ADComputer -LDAPFilter '(objectClass=Computer)' | Select -Expand Name
+2008R2ESXI2
+2008R2ESXI
+SRV2003R2ESXI
+SIEMENS
+WIN7ESXI
+WINXPESXI
+WIN2K
+VISTA64ESXI
+SERVER2003
+XPTANKET
+SERVER2008
+esxi
+WINXPSSD
+</pre>
+<h3> <span class="mw-headline" id="Using_An_LDAP_Query_And_Get-ADObject"> Using An LDAP Query And Get-ADObject </span></h3>
+<p>You can use the same filter with Get-ADObject:
+</p>
+<pre>
+PS C:\prog\PowerShell&gt; Get-ADObject -LDAPFilter '(objectClass=Computer)' | Select -Expand Name
+2008R2ESXI2
+2008R2ESXI
+SRV2003R2ESXI
+SIEMENS
+WIN7ESXI
+WINXPESXI
+WIN2K
+VISTA64ESXI
+SERVER2003
+XPTANKET
+SERVER2008
+esxi
+WINXPSSD
+</pre>
+<h3> <span class="mw-headline" id="Filtering_Using_Wildcards_And_Where-Object"> Filtering Using Wildcards And Where-Object </span></h3>
+<p>Here I filter on computer names that start with "2008":
+</p>
+<pre>
+PS C:\prog\PowerShell&gt; Get-ADComputer -Filter 'SamAccountName -like &quot;2008*&quot;' | Select -Exp Name
+2008R2ESXI
+2008R2ESXI2
+</pre>
+<p>And here I filter on computer names that contain "2008":
+</p>
+<pre>
+PS C:\prog\PowerShell&gt; Get-ADComputer -Filter 'SamAccountName -like &quot;*2008*&quot;' | Select -Exp Name
+2008R2ESXI2
+2008R2ESXI
+SERVER2008
+</pre>
+<p>Of course you can also filter in the pipeline using PowerShell's <a href="/wiki/The_PowerShell_Where-Object_cmdlet" title="The PowerShell Where-Object cmdlet">Where-Object</a>/Where, but it will be less efficient on large queries:
+</p>
+<pre>
+PS C:\prog\PowerShell&gt; Get-ADComputer -Filter * | Where { $_.Name -imatch '2008' } | Select -Exp Name
+2008R2ESXI2
+2008R2ESXI
+SERVER2008
+</pre>
+<h2> <span class="mw-headline" id="Using_DirectorySearcher.2FAdsiSearcher"> Using DirectorySearcher/AdsiSearcher </span></h2>
+<p>If this is the absolute best way of doing this, I do not know, but it seems quite likely that it's no crime against humanity given my experimentation and inspection of the (computer) objects returned by DirectoryServices.DirectorySearcher.
+</p><p>Here's the output from my home lab's AD (these indeed are all the computers in the Active Directory):
+</p>
+<pre>
+PS C:\prog\PowerShell&gt; .\Get-Computers-DS.ps1
+2008R2ESXI2
+2008R2ESXI
+SRV2003R2ESXI
+SIEMENS
+WIN7ESXI
+WINXPESXI
+WIN2K
+VISTA64ESXI
+SERVER2003
+XPTANKET
+SERVER2008
+esxi
+WINXPSSD
+</pre>
+<p><br />
+</p><p><script type="text/javascript"><!--
+google_ad_client = "ca-pub-5203802095278960";
+/* Main ad */
+google_ad_slot = "5585484876";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</p><p>Basically with DirectoryServices.DirectorySearcher, the real magic is in the LDAP query, and you might have to inspect returned objects to see what their properties are. The LDAP query is specified via the Filter property of the directory searcher object, and in this case it is "<b>(objectClass=Computer)</b>".
+</p><p>Also be aware that the property you index is case-sensitive, and that they're all listed as lower-case when you look at the returned System.DirectoryServices.ResultPropertyCollection object.
+</p><p>Here is a ready-made script that'll just dump every single computer from the AD of the first available domain controller, using Windows' method for detecting domain controllers:
+</p>
+<pre>
+#Set-StrictMode -Version Latest
+#$ErrorActionPreference = 'Stop'
+
+$DirSearcher = New-Object System.DirectoryServices.DirectorySearcher([adsi]'')
+$DirSearcher.Filter = '(objectClass=Computer)'
+
+# These properties are part of a DirectoryServices.ResultPropertyCollection
+# NB! These properties need to be all lowercase!
+$DirSearcher.FindAll().GetEnumerator() | ForEach-Object { $_.Properties.name }
+</pre>
+<p>I should also mention that there's a type accelerator in PowerShell v2 (I don't know about v1.x), which allows you to skip a few steps like this (notice the two quotes after the type accelerator):
+</p>
+<pre>
+PS C:\&gt; $DirSearcher = [adsisearcher]''
+PS C:\&gt;
+</pre>
+<h3> <span class="mw-headline" id="Targeting_A_Specific_OU_With_ADSI.2FLDAP.2FDirectorySearcher"> Targeting A Specific OU With ADSI/LDAP/DirectorySearcher </span></h3>
+<p>To target a specific OU/container, change the following line in the script above (this example is valid in my home lab):
+</p>
+<pre>
+$DirSearcher = New-Object DirectoryServices.DirectorySearcher([adsi]'LDAP://OU=Clients,OU=Hjemme,DC=svendsen,DC=local')
+</pre>
+<p>So here I prepended "LDAP://" to the distinguished name of the OU, enclosed it in a string and cast it to an ADSI object, which was then used to to create a System.DirectoryServices.DirectorySearcher object. This targets the OU svendsen.local/Hjemme/Clients. Using "System." first when declaring the object type is optional.
+</p><p>If you were to use the [adsisearcher] type accelerator, it would look like this:
+</p>
+<pre>
+$DirSearcher = [adsisearcher][adsi]'LDAP://OU=Clients,OU=Hjemme,DC=svendsen,DC=local'
+</pre>
+<h2> <span class="mw-headline" id="Parsing_dsquery.exe_Output"> Parsing dsquery.exe Output </span></h2>
+<p>If, for some reason, you're stuck parsing dsquery.exe output, here's just a random example of me retrieving server names for everything under a certain OU (made a bit anonymous: OU=Servere,OU=Boxes,dc=ad,dc=company,dc=no / ad.company.no/Boxes/Servere):
+</p>
+<pre>
+PS C:\&gt; $dsq = dsquery computer -limit 0
+
+PS C:\&gt; $dsq[0]
+&quot;SERVERDCNAME,OU=Domain Controllers,DC=ad,DC=company,DC=no&quot;
+
+PS C:\&gt; $SrvStrings = $dsq | where { $_ -like '*OU=Servere,OU=Boxes,dc=ad,dc=company,dc=no*' }
+
+PS C:\&gt; $SrvStrings[0]
+&quot;CN=X2-443-OS0020,OU=Servere,OU=Boxes,DC=ad,DC=company,DC=no&quot;
+
+PS C:\&gt; $Servers = $SrvStrings |&#160;%{ if ($_ -match '^&quot;CN=([^,]+)') { $matches[1] } }
+
+PS C:\&gt; $Servers[0]
+X2-443-OS0020
+
+PS C:\&gt;
+</pre>
+<h2> <span class="mw-headline" id="Using_Quest_ActiveRoles_Get-QADComputer"> Using Quest ActiveRoles Get-QADComputer </span></h2>
+<p>This example, and the script below, uses Get-QADComputer from <a href="/wiki/Quest_activeroles" title="Quest activeroles">Quest ActiveRoles</a> - a very handy and seemingly mature set of cmdlets for working with Active Directory. They are free - and also work against ADs running on Server 2003 without Active Directory Web Services.
+</p>
+<pre>
+PS C:\powershell&gt; Get-QADComputer -SearchRoot internal.domain.com/someOU/someSubOU -SizeLimit 0 |&#160;%{ $_.Name }
+comp1
+comp2
+comp3
+comp4
+comp5
+PS C:\powershell&gt; Get-QADComputer -SearchRoot internal.domain.com/someOU/someSubOU -SizeLimit 0 |&#160;%{ $_.Name } &gt; foo.txt
+PS C:\powershell&gt; (Get-Content .\foo.txt).Count
+5
+PS C:\powershell&gt; (Get-Content .\foo.txt)[1,-1]
+comp1
+comp5
+</pre>
+<p>Rather than " |&#160;%{ $_.Name }", you can probably more conventionally use " | Select-Object -ExpandProperty Name". You can also use " | Out-File foo.txt" instead of " &gt; foo.txt" - or Add/Set-Content. (Do we love or hate choices? They sort of suck when documenting.)
+</p><p><br />
+</p><p><script type="text/javascript"><!--
+google_ad_client = "ca-pub-5203802095278960";
+/* Main ad */
+google_ad_slot = "5585484876";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</p>
+<h3> <span class="mw-headline" id="Random_Get-QADComputer_Sample"> Random Get-QADComputer Sample </span></h3>
+<p>This script will get some data from AD and redirect it to a file. Easily adapted to other needs. This will retrieve the fields Name, OSName, OSVersion, OSServicePack and LastLogonTimeStamp. See the sample output below for what it looks like. I find sorting on LastLogonTimeStamp useful (read about it <a rel="nofollow" class="external text" href="http://blogs.technet.com/b/askds/archive/2009/04/15/the-lastlogontimestamp-attribute-what-it-was-designed-for-and-how-it-works.aspx">here</a> and <a rel="nofollow" class="external text" href="http://msdn.microsoft.com/en-us/library/ms676824%28v=vs.85%29.aspx">here</a>). I use this script to manually inspect and just remove "old" computers if I'm going to run a command against multiple online computers, for instance.
+</p><p>More conventionally you will probably want to export to CSV. Check Get-Help Export-Csv -Full. Basically, you'd replace the Format-Table and Out-File with something like:
+</p>
+<pre>
+Get-QADComputer ... bla bla |
+Export-Csv -Encoding UTF8 -Delimiter &quot;;&quot; -NoTypeInfo computers.csv
+</pre>
+<p>A little ninja tip, especially if you're preparing CSV reports for non-technical people to read, is to use a semicolon as the delimiter rather than a comma as this makes it load properly divided into columns automatically, in Excel, whereas with a comma I have to import it manually through the wizard. Explaining how to do this (possibly with 3-4 different versions of Excel) is inconvenient, and a lot of people just won't do it; they'll just double-click the CSV file and assume what they're looking at is a proper representation of the data, even if it's all in one column, with quotes intact...
+</p>
+<h4> <span class="mw-headline" id="Download"> Download </span></h4>
+<ul><li><a href="/w/images/c/cc/Get-all-ad-computers.ps1.txt" class="internal" title="Get-all-ad-computers.ps1.txt">Download Get-all-ad-computers.ps1.txt here</a> (right-click, "save as" and rename to .ps1). Source code below.
+</li></ul>
+<h4> <span class="mw-headline" id="Sample_Output"> Sample Output </span></h4>
+<pre>
+PS C:\powershell&gt; .\get-all-ad-computers.ps1
+
+cmdlet get-all-ad-computers.ps1 at command pipeline position 1
+Supply values for the following parameters:
+OutputFile: test.txt
+Running Get-QADComputer...
+Start time:  05/19/2011 23:36:14
+End time:    05/19/2011 23:36:28
+Output file: test.txt
+PS C:\powershell&gt; notepad .\test.txt
+PS C:\powershell&gt; type .\test.txt | Select-Object -first 10
+
+Name            OSName                  OSVersion  OSServicePack          lastLogonTimestamp
+----            ------                  ---------  -------------          ------------------
+comp1           Windows XP Professional 5.1 (2600) Service Pack 2         17.03.2010 03:07:14
+comp2           Windows XP Professional 5.1 (2600) Service Pack 2         18.03.2010 08:04:52
+comp3           Windows XP Professional 5.1 (2600) Service Pack 3         18.03.2010 12:27:59
+comp4           Windows XP Professional 5.1 (2600) Service Pack 3         18.03.2010 12:35:31
+comp5           Windows XP Professional 5.1 (2600) Service Pack 3         18.03.2010 14:07:31
+comp6           Windows XP Professional 5.1 (2600) Service Pack 3         19.03.2010 11:46:23
+comp7           Windows XP Professional 5.1 (2600) Service Pack 3         20.03.2010 19:50:29
+</pre>
+<h4> <span class="mw-headline" id="Getting_Just_The_Computer_Names_From_That_Output"> Getting Just The Computer Names From That Output </span></h4>
+<p>I figure you might want to get just the computer names from that output, and of course you can just run a query where you pipe Get-QADComputer to Select-Object -ExpandProperty Name, but I'll throw in a little example of getting the first "word" (non-whitespace characters in sequence) on a line. In this case you will have to remove the headers manually with notepad or another editor (or Get-Content and Select-Object -First/-Last/-Skip if you like).
+</p>
+<h5> <span class="mw-headline" id="Using_Split"> Using Split </span></h5>
+<p>Read more about the <a href="/wiki/Powershell_split_operator" title="Powershell split operator">PowerShell split operator here</a>.
+</p>
+<pre>
+PS E:\temp&gt; (gc .\computers.txt)[0,-1]
+comp1           Windows XP Professional 5.1 (2600) Service Pack 2         17.03.2010 03:07:14
+comp7           Windows XP Professional 5.1 (2600) Service Pack 3         20.03.2010 19:50:29
+
+PS E:\temp&gt; gc .\computers.txt |&#160;%{ ($_ -split '\s+')[0] }
+comp1
+comp2
+comp3
+comp4
+comp5
+comp6
+comp7
+</pre>
+<h5> <span class="mw-headline" id="Using_A_Regular_Expression"> Using A Regular Expression </span></h5>
+<p>Read more about <a href="/wiki/Powershell_regular_expressions" title="Powershell regular expressions">PowerShell regular expressions here</a>.
+</p>
+<pre>
+PS E:\temp&gt; (gc .\computers.txt)[0,-1]
+comp1           Windows XP Professional 5.1 (2600) Service Pack 2         17.03.2010 03:07:14
+comp7           Windows XP Professional 5.1 (2600) Service Pack 3         20.03.2010 19:50:29
+
+PS E:\temp&gt; gc .\computers.txt |&#160;%{ if ($_ -match '^(\S+)') { $matches[1] } }
+comp1
+comp2
+comp3
+comp4
+comp5
+comp6
+comp7
+</pre>
+<h4> <span class="mw-headline" id="Script_Code"> Script Code </span></h4>
+<pre>
+param([Parameter(Mandatory=$true)][string] $OutputFile)
+
+$StartTime = Get-Date
+
+# Check that the Quest.ActiveRoles.ADManagement snapin is available
+if (!(Get-PSSnapin Quest.ActiveRoles.ADManagement -registered -ErrorAction SilentlyContinue)) {
+    
+    'You need the Quest ActiveRoles AD Management Powershell snapin to use this script'
+    &quot;www.quest.com`n&quot;
+    'Please install and register this snapin. Exiting...'
+    exit 0
+    
+}
+
+# Add the snapin and don't display an error if it's already added.
+# If it's not registered, this will be handled above, so this should succeed.
+Add-PSSnapin Quest.ActiveRoles.ADManagement -ErrorAction SilentlyContinue
+
+'Running Get-QADComputer...'
+
+Get-QADComputer -SizeLimit 0 -IncludedProperties LastLogonTimeStamp | 
+  Select-Object Name, OSName, OSVersion, OSServicePack, LastLogonTimeStamp |
+  #Where-Object { ($_.OSVersion -match '^5\.1') } | # Filter on XP/2003
+  Sort-Object @{Expression={$_.LastLogonTimeStamp};Ascending=$true} |
+  #Export-Csv -Encoding UTF8 -Delimiter &quot;;&quot; -NoTypeInfo computers.csv
+  Format-Table -AutoSize -Property Name, OSName, OSVersion, OSServicePack, LastLogonTimeStamp |
+  Out-File $OutputFile
+
+@&quot;
+Start time:  $StartTime
+End time:    $(Get-Date)
+Output file: $OutputFile
+&quot;@
+</pre>
+<p><br />
+<br /><br />
+<i>Keywords: Active Directory, AD, Powershell, Exporting, CSV, LastLogonTimeStamp, LastLogon, Quest ActiveRoles cmdlets, Get-ADComputer, DirectorySearcher, LDAP query for computers</i>
+</p>
+<!-- 
+NewPP limit report
+Preprocessor node count: 302/1000000
+Post‐expand include size: 187/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wikidb-mw_:pcache:idhash:23-0!*!0!!en!2!* and timestamp 20150311155938 -->
+</div><div class="printfooter">
+Retrieved from "<a href="http://www.powershelladmin.com/w/index.php?title=Getting_computer_names_from_AD_using_Powershell&amp;oldid=2514">http://www.powershelladmin.com/w/index.php?title=Getting_computer_names_from_AD_using_Powershell&amp;oldid=2514</a>"</div>
+		<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/wiki/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/wiki/Category:Powershell" title="Category:Powershell">Powershell</a></li><li><a href="/wiki/Category:Windows" title="Category:Windows">Windows</a></li><li><a href="/w/index.php?title=Category:AD&amp;action=edit&amp;redlink=1" class="new" title="Category:AD (page does not exist)">AD</a></li></ul></div></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				<li id="ca-nstab-main" class="selected"><a href="/wiki/Getting_computer_names_from_AD_using_Powershell" primary="1" context="subject" title="View the content page [c]" accesskey="c">Page</a></li>
+				<li id="ca-talk" class="new"><a href="/w/index.php?title=Talk:Getting_computer_names_from_AD_using_Powershell&amp;action=edit&amp;redlink=1" primary="1" context="talk" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				<li id="ca-viewsource"><a href="/w/index.php?title=Getting_computer_names_from_AD_using_Powershell&amp;action=edit" primary="1" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				<li id="ca-history"><a href="/w/index.php?title=Getting_computer_names_from_AD_using_Powershell&amp;action=history" rel="archives" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+
+<li id="pt-login"><a href="/w/index.php?title=Special:UserLogin&amp;returnto=Getting+computer+names+from+AD+using+Powershell" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+<a href="/wiki/Main_Page" style="background-image: url(http://www.powershelladmin.com/svendtech.gif);" title="Visit the main page"></a>
+	</div>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5>Navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage-description"><a href="/wiki/Main_Page" title="Visit the main page [z]" accesskey="z">Main page</a></li>
+				<li id="n-recentchanges"><a href="/wiki/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="/wiki/Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/w/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input type="search" name="search" title="Search Svendsen Tech Powershell Wiki [f]" accesskey="f" id="searchInput" />
+				<input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchGoButton" class="searchButton" />&#160;
+				<input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="/wiki/Special:WhatLinksHere/Getting_computer_names_from_AD_using_Powershell" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="/wiki/Special:RecentChangesLinked/Getting_computer_names_from_AD_using_Powershell" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+				<li id="t-specialpages"><a href="/wiki/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li><a href="/w/index.php?title=Getting_computer_names_from_AD_using_Powershell&amp;printable=yes" rel="alternate">Printable version</a></li>
+				<li id="t-permalink"><a href="/w/index.php?title=Getting_computer_names_from_AD_using_Powershell&amp;oldid=2514" title="Permanent link to this revision of the page">Permanent link</a></li>
+			</ul>
+		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico">
+		<a href="//www.mediawiki.org/"><img src="/w/skins/common/images/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" width="88" height="31" /></a>
+	</div>
+	<ul id="f-list">
+		<li id="lastmod"> This page was last modified on 18 January 2015, at 00:08.</li>
+		<li id="viewcount">This page has been accessed 98,240 times.</li>
+		<li id="privacy"><a href="/wiki/Svendsen_Tech_Powershell_Wiki:Privacy_policy" title="Svendsen Tech Powershell Wiki:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="/wiki/Svendsen_Tech_Powershell_Wiki:About" title="Svendsen Tech Powershell Wiki:About">About Svendsen Tech Powershell Wiki</a></li>
+		<li id="disclaimer"><a href="/wiki/Svendsen_Tech_Powershell_Wiki:General_disclaimer" title="Svendsen Tech Powershell Wiki:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.user","mediawiki.page.ready"], null, true);
+}</script>
+<script src="http://www.powershelladmin.com/w/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=scripts&amp;skin=monobook&amp;*"></script>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30541010-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script><!-- Served in 0.039 secs. --></body></html>

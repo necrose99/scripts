@@ -1,12 +1,21 @@
+<<<<<<< HEAD
 #!/usr/bin/env dash
 
 alias datetime="date +%H:%M"
 
+=======
+#!/bin/dash
+alias datetime="date +%H:%M"
+>>>>>>> a6dd5994b65ef35775cb6199a7204528073b401f
 echo "What time is it in _______?"
 echo '~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 echo 'SF:\t' `TZ="America/Los_Angeles" datetime`
 echo 'NYC:\t' `TZ="America/New_York" datetime`
 echo 'UTC\t' `TZ="Europe/Reijkjavik" datetime`
 echo 'Berlin:\t' `TZ="Europe/Berlin" datetime`
+<<<<<<< HEAD
 echo 'Tehran:\t' `TZ="Europe/Tehran" datetime`
 echo 'Tokyo:\t' `TZ="Asia/Tokyo" datetime`
+=======
+echo 'Seoul:\t' `TZ="Asia/Seoul" datetime`
+>>>>>>> a6dd5994b65ef35775cb6199a7204528073b401f

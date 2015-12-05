@@ -1,0 +1,40 @@
+echo
+echo "Which item?"
+echo "1) choice 1"
+echo "2) choice 2"
+echo "3) choice 3"
+echo
+echo "Enter Choice:"
+read -e INPUT
+echo
+while [ $INPUT != 1 ] && [ $INPUT != 2 ] && [ $INPUT != 3 ] && [ $COUNTER -lt 5 ] || [ -z $INPUT ]; do
+        clear
+        echo
+        echo "You did not enter an appropriate choice.  Please enter 1, 2, or 3."
+        echo "1) choice 1"
+        echo "2) choice 2"
+        echo "3) choice 3"
+        echo
+        echo "Enter Choice:"
+        read -e INPUT
+        echo
+        let COUNTER++
+        echo "Counter =$COUNTER"
+done
+# PROVIDER VARIABLES
+case $INPUT in
+1)
+        PROV_POOL="choice1";;
+2)
+        PROV_POOL="choice 2";;
+3)
+        PROV_POOL="choice 3";;
+*)
+        STATUS=1
+esac
+if [ $STATUS == 0 ]
+then
+        echo "You entered a good value"
+else
+        echo "You have exceeded the error retry count."
+fi
