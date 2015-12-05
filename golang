@@ -1,0 +1,424 @@
+#!/usr/bin/env bash
+##############################################################################
+#
+# golang
+# -------------------
+# Install or update Go language.
+#
+# Download Go source tarball and SHA1 hash from https://code.google.com. If
+# hashcheck is okay, install and setup Go in /usr/local/go, and modify the
+# system default $PATH to include Go's location by appending it to
+# /etc/profile.
+#
+# For x86 64- and 32- bit Linux, only. Should work on all distros, except for
+# RHEL and CentOS.
+#
+# :authors: Isis Agora Lovecruft, 0xa3adb67a2cdb8b35
+# :date:    3 September 2012
+# :version: 0.0.6
+#
+##############################################################################
+
+set -eET
+
+GO_VERSION="1.4.1"
+USER_AGENT='Mozilla/5.0 (Windows NT 6.1; rv:31.0) Gecko/20100101 Firefox/31.0'
+contact_name=isis
+contact_host=patternsinthevoid.net
+contact="${contact_name}@${contact_host}"
+
+function usage ()
+{
+    printf "Usage: %s [options]\n\n" $(basename $0)
+    printf "Options:\n"
+    printf "\tinstall           Install Go ${GO_VERSION}\n"
+    printf "\treinstall         Update Go to ${GO_VERSION}\n"
+    printf "\tpath              Export PATH to Go & GoTools\n"
+    printf "\ttor               Wrap network-related commands with torsocks\n"
+    cat <<EOF
+
+Additional Info:
+    The “install” and “path” options will append to /etc/profile. This is
+part of the Go installation instructions; it simply configures your GOPATH
+and GOROOT environment variables so that you can start using Go.
+
+    The “reinstall” option assumes you've already correctly configured your
+PATH in order to use Go. If you already have a Go interpreter installed, or
+you've already configured your environment, be sure to choose the “reinstall”
+option, else you'll end up with Go in your PATH twice!
+EOF
+}
+
+## wget is such a piece of shit
+googlecode_cert=${HOME}/go.googlecode.com.pem
+cat > $googlecode_cert<<EOF
+# Certificate chain
+#  0 s:/C=US/ST=California/L=Mountain View/O=Google Inc/CN=*.googlecode.com
+#    i:/C=US/O=Google Inc/CN=Google Internet Authority
+#  1 s:/C=US/O=Google Inc/CN=Google Internet Authority
+#    i:/C=US/O=Equifax/OU=Equifax Secure Certificate Authority
+# ---
+# subject=/C=US/ST=California/L=Mountain View/O=Google Inc/CN=*.googlecode.com
+# issuer=/C=US/O=Google Inc/CN=Google Internet Authority
+#
+-----BEGIN CERTIFICATE-----
+MIID8zCCA1ygAwIBAgIKYFQAGQABAACI2DANBgkqhkiG9w0BAQUFADBGMQswCQYD
+VQQGEwJVUzETMBEGA1UEChMKR29vZ2xlIEluYzEiMCAGA1UEAxMZR29vZ2xlIElu
+dGVybmV0IEF1dGhvcml0eTAeFw0xMzA1MjIxNTQ5MzZaFw0xMzEwMzEyMzU5NTla
+MGoxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1N
+b3VudGFpbiBWaWV3MRMwEQYDVQQKEwpHb29nbGUgSW5jMRkwFwYDVQQDFBAqLmdv
+b2dsZWNvZGUuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCa8E5KvOiP
+sdEMKZPU1oaIXOI/klU0l/VEDnF9ASui3ABnDOrQgpnq6z43p4/LoELbTqvB5bAb
+NbWJ2iI8IuGM6YQRuqQ75ZSGmF8TnTeI0GAHVV2s0TD+cj3uhiEyO3iAdhlVGM9Q
+hR98leo4iZAFvXMci4rvzauHmf+Ar9r21QIDAQABo4IBwjCCAb4wHQYDVR0lBBYw
+FAYIKwYBBQUHAwEGCCsGAQUFBwMCMB0GA1UdDgQWBBSOtnGG1BT7cljLxLZV0Jyu
+VK5e1jAfBgNVHSMEGDAWgBS/wDDr9UMRPme6npH7/Gra42sSJDBbBgNVHR8EVDBS
+MFCgTqBMhkpodHRwOi8vd3d3LmdzdGF0aWMuY29tL0dvb2dsZUludGVybmV0QXV0
+aG9yaXR5L0dvb2dsZUludGVybmV0QXV0aG9yaXR5LmNybDBmBggrBgEFBQcBAQRa
+MFgwVgYIKwYBBQUHMAKGSmh0dHA6Ly93d3cuZ3N0YXRpYy5jb20vR29vZ2xlSW50
+ZXJuZXRBdXRob3JpdHkvR29vZ2xlSW50ZXJuZXRBdXRob3JpdHkuY3J0MAwGA1Ud
+EwEB/wQCMAAwgYkGA1UdEQSBgTB/ghAqLmdvb2dsZWNvZGUuY29tghEqLmNvZGUu
+Z29vZ2xlLmNvbYIOKi5jb2Rlc3BvdC5jb22CEiouZ29vZ2xlc291cmNlLmNvbYIS
+Ki51Lmdvb2dsZWNvZGUuY29tgg5nb29nbGVjb2RlLmNvbYIQZ29vZ2xlc291cmNl
+LmNvbTANBgkqhkiG9w0BAQUFAAOBgQBFgLfs1Vite/eUt3hMEFp2lfjAXY4e4c/E
+AGwJmPSOR0PM8URx3eVlBfR3bex6gdr5UWTtrRY+zwuG+hNj2IOqNNsGXszr1AAt
+dlQCICci26F85I+OeRxpOfo+5LFbdqkS43T46Fbt68SNzwK5WHD3gN/R8yinxam4
+h2eohczgVg==
+-----END CERTIFICATE-----
+EOF
+
+google_cert=${HOME}/code.google.com.pem
+cat > $google_cert <<EOF
+# Certificate chain
+#  0 s:/C=US/ST=California/L=Mountain View/O=Google Inc/CN=*.google.com
+#    i:/C=US/O=Google Inc/CN=Google Internet Authority
+#  1 s:/C=US/O=Google Inc/CN=Google Internet Authority
+#    i:/C=US/O=Equifax/OU=Equifax Secure Certificate Authority
+# ---
+# subject=/C=US/ST=California/L=Mountain View/O=Google Inc/CN=*.google.com
+# issuer=/C=US/O=Google Inc/CN=Google Internet Authority
+#
+-----BEGIN CERTIFICATE-----
+MIIGKjCCBZOgAwIBAgIKYFSo5QABAACI/DANBgkqhkiG9w0BAQUFADBGMQswCQYD
+VQQGEwJVUzETMBEGA1UEChMKR29vZ2xlIEluYzEiMCAGA1UEAxMZR29vZ2xlIElu
+dGVybmV0IEF1dGhvcml0eTAeFw0xMzA1MjIxNTUwMjBaFw0xMzEwMzEyMzU5NTla
+MGYxCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1N
+b3VudGFpbiBWaWV3MRMwEQYDVQQKEwpHb29nbGUgSW5jMRUwEwYDVQQDFAwqLmdv
+b2dsZS5jb20wgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAJrwTkq86I+x0Qwp
+k9TWhohc4j+SVTSX9UQOcX0BK6LcAGcM6tCCmerrPjenj8ugQttOq8HlsBs1tYna
+Ijwi4YzphBG6pDvllIaYXxOdN4jQYAdVXazRMP5yPe6GITI7eIB2GVUYz1CFH3yV
+6jiJkAW9cxyLiu/Nq4eZ/4Cv2vbVAgMBAAGjggP9MIID+TAdBgNVHSUEFjAUBggr
+BgEFBQcDAQYIKwYBBQUHAwIwHQYDVR0OBBYEFI62cYbUFPtyWMvEtlXQnK5Url7W
+MB8GA1UdIwQYMBaAFL/AMOv1QxE+Z7qekfv8atrjaxIkMFsGA1UdHwRUMFIwUKBO
+oEyGSmh0dHA6Ly93d3cuZ3N0YXRpYy5jb20vR29vZ2xlSW50ZXJuZXRBdXRob3Jp
+dHkvR29vZ2xlSW50ZXJuZXRBdXRob3JpdHkuY3JsMGYGCCsGAQUFBwEBBFowWDBW
+BggrBgEFBQcwAoZKaHR0cDovL3d3dy5nc3RhdGljLmNvbS9Hb29nbGVJbnRlcm5l
+dEF1dGhvcml0eS9Hb29nbGVJbnRlcm5ldEF1dGhvcml0eS5jcnQwDAYDVR0TAQH/
+BAIwADCCAsMGA1UdEQSCArowggK2ggwqLmdvb2dsZS5jb22CDSouYW5kcm9pZC5j
+b22CFiouYXBwZW5naW5lLmdvb2dsZS5jb22CEiouY2xvdWQuZ29vZ2xlLmNvbYIW
+Ki5nb29nbGUtYW5hbHl0aWNzLmNvbYILKi5nb29nbGUuY2GCCyouZ29vZ2xlLmNs
+gg4qLmdvb2dsZS5jby5pboIOKi5nb29nbGUuY28uanCCDiouZ29vZ2xlLmNvLnVr
+gg8qLmdvb2dsZS5jb20uYXKCDyouZ29vZ2xlLmNvbS5hdYIPKi5nb29nbGUuY29t
+LmJygg8qLmdvb2dsZS5jb20uY2+CDyouZ29vZ2xlLmNvbS5teIIPKi5nb29nbGUu
+Y29tLnRygg8qLmdvb2dsZS5jb20udm6CCyouZ29vZ2xlLmRlggsqLmdvb2dsZS5l
+c4ILKi5nb29nbGUuZnKCCyouZ29vZ2xlLmh1ggsqLmdvb2dsZS5pdIILKi5nb29n
+bGUubmyCCyouZ29vZ2xlLnBsggsqLmdvb2dsZS5wdIIPKi5nb29nbGVhcGlzLmNu
+ghQqLmdvb2dsZWNvbW1lcmNlLmNvbYINKi5nc3RhdGljLmNvbYIMKi51cmNoaW4u
+Y29tghAqLnVybC5nb29nbGUuY29tghYqLnlvdXR1YmUtbm9jb29raWUuY29tgg0q
+LnlvdXR1YmUuY29tghYqLnlvdXR1YmVlZHVjYXRpb24uY29tggsqLnl0aW1nLmNv
+bYILYW5kcm9pZC5jb22CBGcuY2+CBmdvby5nbIIUZ29vZ2xlLWFuYWx5dGljcy5j
+b22CCmdvb2dsZS5jb22CEmdvb2dsZWNvbW1lcmNlLmNvbYIKdXJjaGluLmNvbYII
+eW91dHUuYmWCC3lvdXR1YmUuY29tghR5b3V0dWJlZWR1Y2F0aW9uLmNvbTANBgkq
+hkiG9w0BAQUFAAOBgQBth2xoSd+0Tsw8V096Ix2yPQKj7xz9GOt09ac+vXXazCPE
+GVybxZZ5Xf0xxMa7+STBajHYNLgVg7te4rTXs6HaUS/IHri6ZtZ1NtotRWIjk5XR
+wFZmH2AKFgdm8A4koiNdn+KuOXt1s6qLgLarDZOD4dr8WatNV1iA3CtiWPDLbQ==
+-----END CERTIFICATE-----
+EOF
+
+# $1: (bool) USE_WITH_TOR
+function install_go ()
+{
+    OUR_ARCH=$(uname -m)
+    FILE="https://golang.org/dl/"
+
+    if [[ "$OUR_ARCH" == "x86_64" ]]; then
+        ARCH_STRING=".linux-amd64.tar.gz"
+    elif [[ "$OUR_ARCH" == "i686" ]]; then
+        ARCH_STRING=".linux-386.tar.gz"
+    else
+        printf "Unsupported architecture. Must be 64-bit or 32-bit.\n"
+        exit 1
+    fi
+
+    save_file=${GO_VERSION}${ARCH_STRING}
+    tarball=${FILE}$save_file
+    details=${FILE}
+
+    GO_SOURCE=${HOME}/go${save_file}
+    HTML_PAGE=${HOME}/go${GO_VERSION}.tar.gz.html
+
+    if ! test -f "$GO_SOURCE" ; then
+        if test -n "$tarball"; then
+            printf "Downloading Go from:\n"
+            printf "\t%s\n" ${tarball}
+            if [[ "${USE_WITH_TOR}" == 1 ]]; then
+                cd ${HOME} && \
+                    torsocks wget -q --progress=bar -U $USER_AGENT \
+                    --secure-protocol=TLSv1 --ca-certificate=$googlecode_cert \
+                    -O ${GO_SOURCE} ${tarball}
+            else
+                cd ${HOME} && \
+                    wget -q --timestamping --progress=bar -U $USER_AGENT \
+                    --secure-protocol=TLSv1 --ca-certificate=$googlecode_cert \
+                    -O ${GO_SOURCE} ${tarball}
+            fi
+        else
+            printf "Error determining correct download...exiting...\n"
+            unset USE_WITH_TOR
+            exit 1
+        fi
+    else
+        printf "Download already completed, attempting to resume install.\n"
+    fi
+
+    printf "Getting reported SHA1 from:\n\t%s\n" ${details}
+    if [[ "${USE_WITH_TOR}" == 1 ]]; then
+        cd ${HOME} && \
+            torsocks wget --progress=bar -U "$USER_AGENT" \
+            --secure-protocol=TLSv1 --ca-certificate=$google_cert \
+            -O $HTML_PAGE ${details}
+    else
+        cd ${HOME} && \
+            wget --progress=bar -U "$USER_AGENT" \
+            --secure-protocol=TLSv1 --ca-certificate=$google_cert \
+            -O $HTML_PAGE ${details}
+    fi
+
+    unset USE_WITH_TOR
+
+    theirs=${HOME}/go_reported_hash
+    ours=${HOME}/go_our_hash
+
+    printf "Checking SHA1 hash of downloaded source...\n"
+    grep -A6 "$save_file" $HTML_PAGE | grep -oE "[a-z0-9]{40}" | cat > $theirs
+    sha1sum $GO_SOURCE | cut -d " " -f 1 > $ours
+
+    printf "Reported SHA1 from Google Code: %s\n" $(cat $theirs )
+    printf "Computed SHA1 from download:    %s\n" $(cat $ours )
+
+    HASHDIFF=`diff ${theirs} ${ours}`
+    if [[ "$HASHDIFF" == "" ]]; then
+        printf "Installing GoTools ...\n"
+        printf "Because unpacking the tarball into /usr/local requires root,\n"
+        printf "you will be prompted for your sudo password.\n"
+        sudo -- tar -C /usr/local -xzf $GO_SOURCE
+        if test "$?" -eq 0 ; then
+            printf "Installation successful!\n"
+        fi
+    else
+        printf "WARNING: shasums do not match! Aborting installation...\n"
+        MISMATCH=
+    fi
+
+    printf "Cleaning up...\n"
+    for file in $theirs $ours $HTML_PAGE $GO_SOURCE \
+        $googlecode_cert $google_cert ; do
+        if test -f "$file" -a -O "$file" ; then rm $file ; fi
+    done
+
+    if test -v MISMATCH ; then printf "Exiting...\n" ; exit 1 ; fi
+
+    unset MISMATCH HASHDIFF OUR_ARCH ARCH_STRING FILE DOWN GO_SOURCE HTML_PAGE
+}
+
+function export_paths ()
+{
+    if [ $(id -u) -eq 0 ]; then
+        printf
+        printf "Modifying system \$PATH to include Go..."
+        cat >> /etc/profile<<EOF
+## Path to GoTools
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOROOT/bin
+EOF
+        printf "Successfully updated \$PATH in /etc/profile."
+    else
+        printf
+        printf "Modifying user \$PATH..."
+        cat >> $HOME/.profile<<FIN
+## Path to GoTools
+## place the following in /etc/profile to enable Go for all users:
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOROOT/bin
+FIN
+        printf "Successfully updated \$PATH in ${HOME}/.profile..."
+    fi
+}
+
+function root_check ()
+{
+    if [ $(id -u) -ne 0 ]; then
+        printf "Must be run as root."
+        exit 1
+    fi
+}
+
+function os_check ()
+{
+    if [ $(uname) != "Linux" ]; then
+        printf "Sorry, this only works for Linux."
+        exit 1
+    fi
+}
+
+function go_check ()
+{
+    if test -n "$(which go)" ; then
+        current=$(go version | cut -d " " -f 3 | cut -b 3- )
+        printf "Found previous Go installation. Version: %s\n" ${current}
+        if test -d /usr/local/go ; then
+            if [[ "$current" == "${GO_VERSION}" ]] ; then
+                printf "Already up to date!\n"
+                exit 0
+            elif [[ "$current" > "${GO_VERSION}" ]] ; then
+                printf "Oops! You've got Go %s, " ${current}
+                printf "while we've got Go %s.\n" $GO_VERSION
+                printf "Please mailto:%s and tell Isis to " $contact
+                printf "update this script!\n"
+            else
+                printf "Updating Go to version %s...\n" $GO_VERSION
+            fi
+        fi
+    fi
+}
+
+function mercurial_check ()
+{
+    if test -z "$(which hg)" ; then
+        cat <<EOF
+Go requires mercurial. Please use your distro's package manager to obtain
+mercurcial first. Exiting...
+EOF
+    exit 1
+    fi
+}
+
+function tor_check ()
+{
+    tpo='https://www.torproject.org/download'
+    tsocks='https://gitweb.torproject.org/torsocks'
+    newtsocks='https://github.com/dgoulet/torsocks'
+
+    printf "Checking to see if tor is installed..."
+    if test -z "$(which tor)" ; then
+        FAIL=1
+        cat <<EOF
+It seems you don't have tor installed! If your distribution doesn't package
+it, you can download tor from the Tor Project website:
+    $tpo
+EOF
+    else
+        printf "OK\n"
+    fi
+
+    printf "Checking to see if torsocks is installed..."
+    if test -z "$(which torsocks)" ; then
+        FAIL=1
+        cat <<EOF
+It seems you don't have torsocks installed!
+
+Unfortunately, if your distribution doesn't already provide a package for it,
+you'll likely need to build it from source.
+
+The official Tor Project repository for the older version of torsocks is here:
+    $tsocks
+
+However, the older torsocks is occaisionally known to leak DNS queries and
+potentially some other types of traffic, which can deanonymise you. For this
+reason, torsocks was recently rewritten. The newer version *should* be safer,
+but we're not making any promises yet. (Otherwise, we would have merged it
+into the official repository!) However, if you are feeling slightly more
+adventurous, and would like to assist us in testing, please consider
+installing the newer torsocks, which can be found here:
+    $newtsocks
+EOF
+    else
+        printf "OK\n"
+    fi
+
+    test -n "$FAIL" && exit 2
+    unset FAIL
+}
+
+function bad_opts_check ()
+{
+    if test "$DO_INSTALL" -eq 1 -a "$DO_REINSTALL" -eq 1 ; then
+        printf "ERROR: We can't install and reinstall at the same time.\n"
+        printf "       One or the other; pick your poison, buddy!\n\n"
+        printf "Exiting...\n"
+        exit 2
+    fi
+}
+
+[[ "$#" > 0 ]] || { usage; exit 1; };
+
+USE_WITH_TOR=0
+DO_INSTALL=0
+DO_REINSTALL=0
+
+while [[ "x$1" != "x" ]]; do
+    case $1 in
+        install )
+            DO_INSTALL=1
+            shift
+            ;;
+        reinstall )
+            DO_REINSTALL=1
+            shift
+            ;;
+        path )
+            os_check
+            export_paths
+            exit 0
+            ;;
+        tor )
+            tor_check
+            USE_WITH_TOR=1
+            shift
+            ;;
+        * )
+            usage
+            exit 1
+            ;;
+    esac
+done
+
+if ! test "$DO_INSTALL" -eq 1 -o "$DO_REINSTALL" -eq 1 ; then
+    usage
+    exit 1
+fi
+
+if test "$DO_INSTALL" -eq 1 -o "$DO_REINSTALL" -eq 1 ; then
+    #root_check
+    bad_opts_check
+    mercurial_check
+    os_check
+    go_check
+    install_go $USE_WITH_TOR
+    clean_up
+    if test "$DO_REINSTALL" -eq 1 ; then
+        printf "\n\nRe-installation sucessfull!\n"
+    elif test "$DO_INSTALL" -eq 1 ; then
+        export_paths
+        printf "\n\nInstallation successful!\n"
+    fi
+    cat <<EOF
+To get started learning Go, you can check out an interactive tour:
+    $ go get code.google.com/p/go-tour/gotour
+Or, if you're feeling erudite, try chillaxing with this book:
+    http://www.golang-book.com/
+EOF
+    unset tarball
+    unset details
+    exit 0
+fi
