@@ -1,0 +1,2 @@
+sudo wget 'https://raw.githubusercontent.com/Spike-Pentesting/enman-db/master/repositories/spike' -O  /etc/entropy/repositories.conf.d/entropy_spike-pentesting 
+sudo wget 'https://raw.githubusercontent.com/Spike-Pentesting/enman-db/master/repositories/spike-limbo' -O  /etc/entropy/repositories.conf.d/entropy_spike-pentesting-limbo
