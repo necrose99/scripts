@@ -12,8 +12,29 @@ def listDirs(dir):
         for folder in subFolders:
            yield os.path.join(root,folder)
     return
+
+##############
+    #!c:/Python31/python.exe -u
+    import os
+    path = "test"
+    for (path, dirs, files) in os.walk(path):
+        print (path)
+        print ("-----------------")
+        if "monitoring" in path:
+            dst = path.replace("monitoring", "managing", 10)
+            print (dst)
+            os.rename(path, dst)
+            print ("path----")
+        for file in files:
+            if "hw" in file:
+                print (file)
+                dst = file.replace("hw", "hw2", 10)
+                os.rename(file, dst)
+                print (dst)
+                print ("file----")
+############## 
 ### 
-data = open("data.txt", 'r')
+data = open("*.ebuild", 'r')
 for line in data:
     # fix the line
 find = open("find.txt", 'r').readlines()
