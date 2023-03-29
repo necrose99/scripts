@@ -12,7 +12,11 @@ ebuild_path = input("Enter the path to the ebuild directory: ")
 lua_versions = ["5.1", "5.2", "5.3"]
 maintainer = input("Enter the PKG-Maintainer/Your Email: ")
 homepage = input("Enter the package Homepage-URL ")
+# Prompt the user for the package description and store it in a variable
+pkg_description = input("Enter the package description: ")
 
+# Use the variable to set the ebuild description field for g-sourcey compat. 
+ebuild.description = pkg_description
 
 # Use the G-Sorcery library to obtain the package's version
 try:
