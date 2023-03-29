@@ -1,55 +1,51 @@
-#!/usr/bin/env python
-#generate with chatgpt
+#!/usr/bin/env python3
+# from https://chat.openai.com/chat/42717af4-33c0-425d-8487-781bd753b5c3 
+
 import os
+from g_sorcery.ebuild import Ebuild
+from g_sorcery.package import Package
+from g_sorcery.version import Version
 
 # Define some variables for the ebuild
-pkgname = "my_package"
-pkgver = "1.0"
-ebuild_path = "/usr/local/portage/dev-lang/my_package"
+pkgname = input("Enter the package name: ")
+ebuild_path = input("Enter the path to the ebuild directory: ")
 lua_versions = ["5.1", "5.2", "5.3"]
-maintainer = "Your Name <you@example.com>"
-homepage = "https://www.example.com"
+maintainer = input("Enter the PKG-Maintainer/Your Email: ")
+homepage = input("Enter the package Homepage-URL ")
+
+
+# Use the G-Sorcery library to obtain the package's version
+try:
+    package = Package(pkgname)
+    latest_version = package.latest_version()
+    version = Version(latest_version)
+    pkgver = version.version
+except Exception as e:
+    print(f"Failed to obtain version for {pkgname}: {str(e)}")
+    exit(1)
 
 # Create the ebuild directory if it doesn't exist
 if not os.path.exists(ebuild_path):
     os.makedirs(ebuild_path)
 
-# Create the ebuild file
+# Create the ebuild file using the g_sorcery library
+ebuild = Ebuild(pkgname, pkgver, maintainer=maintainer, homepage=homepage)
+ebuild.inherit("lua")
+ebuild.description = "My package description"
+ebuild.src_uri = f"https://www.example.com/{pkgname}-{pkgver}.tar.gz"
+for lua_version in lua_versions:
+    ebuild.depend(f"dev-lang/lua:{lua_version}")
+ebuild.slot = "0"
+ebuild.license = "MIT"
+ebuild.iuse = ""
+ebuild.s = f"${{WORKDIR}}/{pkgname}-${{PV}}"
+ebuild.install.append("emake")
+ebuild.install.append("default")
+ebuild.test.append("emake test")
+
+# Write the ebuild to a file
 with open(os.path.join(ebuild_path, f"{pkgname}-{pkgver}.ebuild"), "w") as f:
-    # Write the basic ebuild information
-    f.write("# Copyright 2023 Your Name\n")
-    f.write("EAPI=7\n")
-    f.write(f"Inherit lua\n\n")
-    
-    # Write the package information
-    f.write(f"DESCRIPTION=\"My package description\"\n")
-    f.write(f"HOMEPAGE=\"{homepage}\"\n")
-    f.write(f"SRC_URI=\"https://www.example.com/{pkgname}-{pkgver}.tar.gz\"\n\n")
-    
-    # Write the Lua eclass information
-    f.write("DEPEND=\"\n")
-    for lua_version in lua_versions:
-        f.write(f"   dev-lang/lua:{lua_version}\n")
-    f.write("\"\n\n")
-    
-    # Write the maintainer information
-    f.write(f"MAINTAINER=\"{maintainer}\"\n")
-    f.write(f"KEYWORDS=\"~amd64\"\n")
-    f.write(f"SLOT=\"0\"\n")
-    f.write(f"LICENSE=\"MIT\"\n")
-    f.write(f"IUSE=\"\"\n")
-    f.write(f"S="${{WORKDIR}}/{pkgname}-${{PV}}"\n")
-    
-    # Write the install and test phases
-    f.write("src_compile() {\n")
-    f.write("   emake\n")
-    f.write("}\n\n")
-    f.write("src_install() {\n")
-    f.write("   default\n")
-    f.write("}\n\n")
-    f.write("src_test() {\n")
-    f.write("   emake test\n")
-    f.write("}\n")
+    f.write(str(ebuild))
 
 # Make the ebuild executable
 os.chmod(os.path.join(ebuild_path, f"{pkgname}-{pkgver}.ebuild"), 0o755)
